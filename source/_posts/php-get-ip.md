@@ -1,5 +1,6 @@
 ---
 title: PHP获取外网IP地址
+link: php-get-ip
 tags:
   - php
   - 代码

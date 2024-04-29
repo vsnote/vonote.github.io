@@ -1,5 +1,6 @@
 ---
 title: 常用的一些键盘快捷键和键盘操作技巧
+link: skill-keyboard
 tags:
   - 技巧
   - 教程

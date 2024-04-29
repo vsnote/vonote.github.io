@@ -1,5 +1,6 @@
 ---
 title: 小白的gvim配置文件备份
+link: gvim-conf
 tags:
   - gvim
   - 代码

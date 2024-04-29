@@ -1,5 +1,6 @@
 ---
 title: Yourphp随机文章调用,纯SQL方法
+link: yourphp-rand-article-sql
 tags:
   - Yourphp
   - 代码

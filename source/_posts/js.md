@@ -1,5 +1,6 @@
 ---
 title: js
+link: js
 tags: []
 id: '812'
 categories:

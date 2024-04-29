@@ -1,5 +1,6 @@
 ---
 title: YourPHP 提示 PHP Fatal error 解决方法
+link: yourphp-php-fatal-error
 tags:
   - Yourphp
   - 代码

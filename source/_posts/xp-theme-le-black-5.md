@@ -1,5 +1,6 @@
 ---
 title: LE Black 5 - 经典的极致XP主题
+link: xp-theme-le-black-5
 tags:
   - xp
   - 主题

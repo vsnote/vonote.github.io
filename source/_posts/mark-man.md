@@ -1,5 +1,6 @@
 ---
 title: Mark Man 设计稿标注&测量神器 - 设计人员必备工具
+link: mark-man
 tags:
   - 工具
   - 开发

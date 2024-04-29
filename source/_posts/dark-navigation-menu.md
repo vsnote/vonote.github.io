@@ -1,5 +1,6 @@
 ---
 title: 深色质感导航菜单模板 - 给你设计灵感(提供PSD下载)
+link: dark-navigation-menu
 tags:
   - PS
   - web开发

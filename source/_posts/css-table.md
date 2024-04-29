@@ -1,5 +1,6 @@
 ---
 title: 符合网页标准的CSS表格制作
+link: css-table
 tags:
   - CSS
   - 代码

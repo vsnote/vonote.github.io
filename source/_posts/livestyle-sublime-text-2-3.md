@@ -1,5 +1,6 @@
 ---
 title: Emmet LiveStyle - Sublime text 2/3 配合谷歌 Chrome 浏览器实现高效可视化开发
+link: livestyle-sublime-text-2-3
 tags:
   - Chorme 插件
   - sublime

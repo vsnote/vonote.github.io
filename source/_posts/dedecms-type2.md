@@ -1,5 +1,6 @@
 ---
 title: 分享一个dedecms自定义获取上级栏目名称和链接的标签
+link: dedecms-type2
 tags:
   - dedecms
   - php

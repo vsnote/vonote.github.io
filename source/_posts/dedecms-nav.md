@@ -1,5 +1,6 @@
 ---
 title: 织梦模板标签之导航篇
+link: dedecms-nav
 tags:
   - dedecms
   - 二次开发

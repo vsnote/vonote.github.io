@@ -1,5 +1,6 @@
 ---
 title: 笑喷了！看郭德纲赵本山周立波他们怎么评论手机市场
+link: funny-comments-on-the-mobile-phone-market
 tags:
   - 娱乐
   - 心情

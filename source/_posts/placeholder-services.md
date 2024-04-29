@@ -1,5 +1,6 @@
 ---
 title: 为网页设计提供图片占位服务的几个国外网站
+link: placeholder-services
 tags:
   - 图片
   - 开发

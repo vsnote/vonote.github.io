@@ -1,5 +1,6 @@
 ---
 title: centos nginx 配置 codeigniter pathinfo(伪静态)
+link: centos-nginx-codeigniter-pathinfo
 tags:
   - centos
   - codeigniter

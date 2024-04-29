@@ -1,5 +1,6 @@
 ---
 title: Windows 8.1 RTM 简体中文专业版核心版下载[附激活方法]
+link: windows-8-1-rtm-pro
 tags:
   - win8
   - win8.1

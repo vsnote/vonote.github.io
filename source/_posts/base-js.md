@@ -1,5 +1,6 @@
 ---
 title: 自己写的一个原生态JS选项卡
+link: base-js-tab-control
 tags:
   - javascript
   - 代码

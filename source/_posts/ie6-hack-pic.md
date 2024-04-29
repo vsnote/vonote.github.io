@@ -1,5 +1,6 @@
 ---
 title: 解决多张图片排版在IE6下有空隙的方法
+link: ie6-hack-pic
 tags:
   - CSS
   - hack

@@ -1,5 +1,6 @@
 ---
 title: 菜鸟是什么意思 - 个人博客的来源
+link: what-does-cai-niao-mean
 tags:
   - 博客
   - 菜鸟

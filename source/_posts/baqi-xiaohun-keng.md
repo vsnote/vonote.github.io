@@ -1,5 +1,6 @@
 ---
 title: 恶搞各种霸气、销魂、凶器的锁骨坑
+link: funny-coin-in-collarbone
 tags:
   - 图片
   - 微博

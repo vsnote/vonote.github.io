@@ -1,5 +1,6 @@
 ---
 title: yourphp
+link: yourphp
 tags: []
 id: '814'
 categories:

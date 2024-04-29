@@ -1,5 +1,6 @@
 ---
 title: 躁动的心，怎么才能平静？
+link: mind-how-to-calm
 tags:
   - 心情
   - 情感

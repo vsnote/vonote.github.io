@@ -1,5 +1,6 @@
 ---
 title: sublime text 3 最新中文汉化破解开发版下载(3047)
+link: sublime-text-3047-dev
 tags:
   - sublime text 3
   - 代码

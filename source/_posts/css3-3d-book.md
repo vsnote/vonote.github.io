@@ -1,5 +1,6 @@
 ---
 title: 用CSS3实现图书3D变换动画效果
+link: css3-3d-book
 tags:
   - 3D效果
   - CSS

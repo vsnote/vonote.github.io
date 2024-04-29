@@ -1,5 +1,6 @@
 ---
 title: jQuery获取各种input属性的方法
+link: jquery-get-input
 tags:
   - jquery
   - 代码

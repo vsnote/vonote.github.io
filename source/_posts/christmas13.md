@@ -1,5 +1,6 @@
 ---
 title: 8个圣诞节小软件下载 - 祝朋友们圣诞快乐！
+link: christmas-software
 tags:
   - 圣诞节
   - 小挂件

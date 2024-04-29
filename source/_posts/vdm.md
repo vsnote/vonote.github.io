@@ -1,5 +1,6 @@
 ---
 title: Virtual Drive Manager - 一个简单，小巧，直接，绿色的虚拟光驱！
+link: virtual-drive-manager
 tags:
   - 工具
   - 系统

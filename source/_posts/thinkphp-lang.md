@@ -1,5 +1,6 @@
 ---
 title: 怎么开启 ThinkPHP 语言包的功能的方法
+link: thinkphp-lang-pack-enable
 tags:
   - thinkphp
   - 代码

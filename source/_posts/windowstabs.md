@@ -1,5 +1,6 @@
 ---
 title: WindowsTabs 汉化版 - 更有效率的程序标签功能
+link: windowstabs
 tags:
   - 效率
   - 系统

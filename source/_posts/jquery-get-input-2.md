@@ -1,5 +1,6 @@
 ---
 title: JQuery 获取 input 值的多种方法
+link: jquery-get-input-2
 tags:
   - jquery
   - js

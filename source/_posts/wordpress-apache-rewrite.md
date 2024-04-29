@@ -1,5 +1,6 @@
 ---
 title: wordpress伪静态设置(Apache服务器下)
+link: wordpress-apache-rewrite
 tags:
   - apache
   - wordpress

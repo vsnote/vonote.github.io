@@ -1,5 +1,6 @@
 ---
 title: sublime text 3 开发版(3056)中文破解版 - windows/linux/64
+link: sublime-text-3056
 tags:
   - sublime
   - sublime text 3

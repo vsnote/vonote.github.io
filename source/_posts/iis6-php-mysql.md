@@ -1,5 +1,6 @@
 ---
 title: IIS6.0下搭建php+mysql服务器环境小白篇
+link: iis6-php-mysql
 tags:
   - mysql
   - php

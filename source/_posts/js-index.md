@@ -1,5 +1,6 @@
 ---
 title: 前端性能优化技巧 - 使用索引对象
+link: js-index
 tags:
   - javascript
   - js

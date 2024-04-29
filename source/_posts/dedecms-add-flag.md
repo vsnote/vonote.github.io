@@ -1,5 +1,6 @@
 ---
 title: dedecms 添加文档自定义属性
+link: dedecms-add-custom-attributes
 tags:
   - dedecms
   - php

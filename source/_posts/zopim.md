@@ -1,5 +1,6 @@
 ---
 title: zopim！国外免费的网页在线聊天插件，适合小型企业。
+link: zopim
 tags:
   - 免费
   - 工具

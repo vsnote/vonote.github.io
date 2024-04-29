@@ -1,5 +1,6 @@
 ---
 title: 让某个块跟随滚动的JS
+link: js-float-element
 tags:
   - js
   - 代码

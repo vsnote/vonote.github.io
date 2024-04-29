@@ -1,5 +1,6 @@
 ---
 title: dedecms 去掉首页链接的index.html
+link: dedecms-index-html
 tags:
   - dedecms
   - php

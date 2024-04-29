@@ -1,5 +1,6 @@
 ---
 title: Windows 11 通过 Docker 安装 Windows XP
+link: windows-11-install-windows-xp-via-docker
 date: 2024-04-29 17:09:39
 tags:
 ---

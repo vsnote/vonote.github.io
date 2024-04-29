@@ -1,5 +1,6 @@
 ---
 title: Beyond Compare 3 最出色的文件比较软件
+link: beyond-compare-3
 tags:
   - 工具
   - 开发

@@ -1,5 +1,6 @@
 ---
 title: dedecms怎么自动关键词加内链
+link: dedecms-auto-keyword
 tags:
   - dedecms
   - PHP框架

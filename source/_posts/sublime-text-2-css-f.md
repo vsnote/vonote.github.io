@@ -1,5 +1,6 @@
 ---
 title: Css Compact Expand - Sublime text 2 CSS格式化插件，代码瞬间整齐了有木有！
+link: css-compact-expand-with-sublime-text-2
 tags:
   - sublime text 2
   - 代码

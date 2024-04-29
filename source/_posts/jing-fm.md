@@ -1,5 +1,6 @@
 ---
 title: Jing.fm 一句话，一种心情，都可以是一首歌 - 适合阅读的音乐
+link: jing-fm
 tags:
   - 娱乐
   - 电台

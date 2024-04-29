@@ -1,5 +1,6 @@
 ---
 title: Dedecms 用 Count 方法实现在模板得到 Arclist 标签的文章总数
+link: dedecms-count-arclist
 tags:
   - dedecms
   - 代码

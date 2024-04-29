@@ -1,5 +1,6 @@
 ---
 title: NETPAS免费的网游加速器，跨服务器网络游戏玩家的必备软件！
+link: netpas
 tags:
   - 免费
   - 游戏

@@ -1,5 +1,6 @@
 ---
 title: ThinkPHP使用技巧经验分享(二)
+link: thinkphp-tips-2
 tags:
   - php
   - PHP框架

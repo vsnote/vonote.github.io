@@ -1,5 +1,6 @@
 ---
 title: 局域网利用 nc 传输文件
+link: linux-nc
 tags:
   - linux
   - 工具

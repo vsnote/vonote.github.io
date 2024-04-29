@@ -1,5 +1,6 @@
 ---
 title: Guest
+link: guest
 tags: []
 id: '1215'
 categories:

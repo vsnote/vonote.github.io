@@ -1,5 +1,6 @@
 ---
 title: 一个生活在微信息时代的人
+link: a-person-living-in-the-micro-information-age
 tags:
   - 吐槽
   - 心情

@@ -1,5 +1,6 @@
 ---
 title: 非常简洁的jquery折叠菜单代码
+link: jquery-fold-nav
 tags:
   - jquery
   - nav

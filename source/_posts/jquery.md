@@ -1,5 +1,6 @@
 ---
 title: jquery
+link: jquery
 tags: []
 id: '813'
 categories:

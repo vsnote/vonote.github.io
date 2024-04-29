@@ -1,5 +1,6 @@
 ---
 title: nginx+tomcat 实现动静分离和负载均衡
+link: nginx-tomcat
 tags:
   - nginx
   - tomcat

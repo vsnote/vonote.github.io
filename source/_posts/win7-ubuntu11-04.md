@@ -1,5 +1,6 @@
 ---
 title: 最简单的win7+Ubuntu11.04双系统安装方法
+link: win7-ubuntu11-04
 tags:
   - ubuntu
   - win7

@@ -1,5 +1,6 @@
 ---
 title: 用JQuery和CSS3制作漂亮的数字时钟
+link: jquery-css3-clock
 tags:
   - CSS3
   - html5

@@ -1,5 +1,6 @@
 ---
 title: dedecms 实现文章页list标签weight权重自定义排序代码
+link: dedecms-list-weight
 tags:
   - dedecms
   - php

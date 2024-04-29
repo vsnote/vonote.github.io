@@ -1,5 +1,6 @@
 ---
 title: YourPHP 上一篇下一篇优化代码「适应各种模型」
+link: yourphp-pre-next-2
 tags:
   - php
   - Yourphp

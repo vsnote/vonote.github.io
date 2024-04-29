@@ -1,5 +1,6 @@
 ---
 title: 这些年我们都没变，只是时间变了！
+link: these-years-we-havent-changed-just-time-has-changed
 tags:
   - 心情
   - 文字

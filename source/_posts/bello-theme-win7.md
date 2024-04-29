@@ -1,5 +1,6 @@
 ---
 title: Bello 清爽细腻的Win7主题 - 附高清壁纸一张
+link: bello-theme-win7
 tags:
   - win7主题
   - 壁纸

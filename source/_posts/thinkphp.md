@@ -1,5 +1,6 @@
 ---
 title: thinkphp
+link: thinkphp
 tags: []
 id: '815'
 categories:

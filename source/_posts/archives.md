@@ -1,5 +1,6 @@
 ---
 title: Archives
+link: archives
 tags: []
 id: '1223'
 categories:

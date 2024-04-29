@@ -1,5 +1,6 @@
 ---
 title: discuz!论坛DIY图片幻灯片-菜鸟篇
+link: discuz-diy-banner
 tags:
   - discuz!
   - php

@@ -1,5 +1,6 @@
 ---
 title: myFocus 可能是目前唯一的JS焦点图库！你还在为了焦点图四处奔波吗？
+link: myfocus
 tags:
   - javascript
   - 代码

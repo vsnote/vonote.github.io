@@ -1,5 +1,6 @@
 ---
 title: Sublime text 3 汉化破解版最新下载(3061)
+link: sublime-text-3061
 tags:
   - sublime text 3
   - 开发工具

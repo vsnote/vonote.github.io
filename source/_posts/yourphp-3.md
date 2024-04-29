@@ -1,5 +1,6 @@
 ---
 title: Yourphp 3.0 测试版 - 改动最大的一个版本(Thinkphp内核全部重写)
+link: yourphp-3
 tags:
   - php
   - thinkphp

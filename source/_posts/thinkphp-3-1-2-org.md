@@ -1,5 +1,6 @@
 ---
 title: ThinkPHP 3.1.2载入ORG扩展文件的问题
+link: thinkphp-3-1-2-org-extend-library-bug
 tags:
   - php
   - thinkphp

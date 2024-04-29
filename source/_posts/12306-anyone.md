@@ -1,5 +1,6 @@
 ---
 title: 12306 订票助手 aNyoNe版 - 自动抢票神器
+link: 12306-anyone
 tags:
   - '12306'
   - 抢票助手

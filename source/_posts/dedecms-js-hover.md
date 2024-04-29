@@ -1,5 +1,6 @@
 ---
 title: dedecms使用js控制导航hover效果
+link: dedecms-js-hover
 tags:
   - dedecms
   - js

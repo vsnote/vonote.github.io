@@ -1,5 +1,6 @@
 ---
 title: Windows 8.1 专业版激活工具 - KMSpicoV9.0.2
+link: windows-8-1-kms
 tags:
   - kms
   - win8.1

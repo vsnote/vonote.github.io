@@ -1,5 +1,6 @@
 ---
 title: sublime text 3047(dev版本) 插件控制器下载
+link: sublime-text-3047-plus
 tags:
   - sublime text 3
   - 插件

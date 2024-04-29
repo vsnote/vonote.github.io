@@ -1,5 +1,6 @@
 ---
 title: 受用一生的职场建议
+link: the-best-career-advice-ive-received
 tags:
   - 人生
   - 职场

@@ -1,5 +1,6 @@
 ---
 title: thinkphp 框架里面原生 php 代码的写法
+link: thinkphp-php-code-in-template
 tags:
   - php
   - thinkphp

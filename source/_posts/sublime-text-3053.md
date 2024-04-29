@@ -1,5 +1,6 @@
 ---
 title: Sublime Text 3053 中文汉化绿色破解版 - 最流行的编辑器
+link: sublime-text-3053
 tags:
   - sublime text 3
   - 开发工具

@@ -1,5 +1,6 @@
 ---
 title: dedecms 织梦登录后台慢的完美解决方案
+link: dedecms-admin-q1
 tags:
   - dedecms
   - 二次开发

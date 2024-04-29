@@ -1,5 +1,6 @@
 ---
 title: 迅雷 5.8.14.708 最新去广告典藏版 - 支持 Chrome 和火狐下载
+link: thunder-5
 tags:
   - 下载
   - 工具

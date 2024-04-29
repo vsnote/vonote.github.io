@@ -1,5 +1,6 @@
 ---
 title: 通过.htaccess文件实现301重定向
+link: htaccess
 tags:
   - php
   - 学习

@@ -1,5 +1,6 @@
 ---
 title: MySQL 数据库性能优化之 SQL 优化
+link: mysql-sql-optimization
 tags:
   - mysql
   - sql

@@ -1,5 +1,6 @@
 ---
 title: jPages - 一个超酷的jQuery分页插件
+link: jpages
 tags:
   - HTML
   - javascript

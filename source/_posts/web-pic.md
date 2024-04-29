@@ -1,5 +1,6 @@
 ---
 title: WEB应用开发该选择什么图片格式？
+link: web-pic-format
 tags:
   - 图片
   - 开发

@@ -1,5 +1,6 @@
 ---
 title: Jing.fm - Jing Music beta 3.0 万能邀请码
+link: jing-music-3-beta
 tags:
   - 工具
   - 应用

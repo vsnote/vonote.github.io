@@ -1,5 +1,6 @@
 ---
 title: PHP 5.5 正式发布，不支持XP和2003?
+link: php-5-5
 tags:
   - php
 id: '527'

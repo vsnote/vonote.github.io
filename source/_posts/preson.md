@@ -1,5 +1,6 @@
 ---
 title: 人心是一面墙，有人进去，有人出来。
+link: person-heart-is-a-wall
 tags:
   - 人生
   - 情感

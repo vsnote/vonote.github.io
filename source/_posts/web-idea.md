@@ -1,5 +1,6 @@
 ---
 title: 小白对网页布局的一些看法
+link: web-idea
 tags:
   - idea
   - web

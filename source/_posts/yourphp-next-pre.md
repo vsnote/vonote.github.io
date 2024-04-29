@@ -1,5 +1,6 @@
 ---
 title: yourphp文章上一篇下一篇代码分享
+link: yourphp-next-pre
 tags:
   - php
   - Yourphp

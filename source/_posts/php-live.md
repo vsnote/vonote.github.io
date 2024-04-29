@@ -1,5 +1,6 @@
 ---
 title: PHP程序员的技术成长规划
+link: php-live
 tags:
   - 分享
   - 职业生涯

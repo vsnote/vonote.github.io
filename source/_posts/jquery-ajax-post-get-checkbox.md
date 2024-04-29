@@ -1,5 +1,6 @@
 ---
 title: jquery $.ajax $.post或者$.get如何提交checkbox的值
+link: jquery-ajax-post-get-checkbox
 tags:
   - ajax
   - checkbox

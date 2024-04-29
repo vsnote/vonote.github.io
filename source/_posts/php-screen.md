@@ -1,5 +1,6 @@
 ---
 title: PHP 实现即时网站截图
+link: php-screen
 tags:
   - HTML
   - php

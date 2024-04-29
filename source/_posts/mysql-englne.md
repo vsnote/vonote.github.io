@@ -1,5 +1,6 @@
 ---
 title: 深入了解 Mysql 表引擎优化
+link: mysql-engine
 tags:
   - mysql优化
 id: '1024'

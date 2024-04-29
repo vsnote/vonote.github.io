@@ -1,5 +1,6 @@
 ---
 title: Links
+link: links
 tags: []
 id: '1214'
 categories:

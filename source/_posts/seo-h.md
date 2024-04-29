@@ -1,5 +1,6 @@
 ---
 title: 菜鸟站长实战SEO技术
+link: seo-h
 tags:
   - SEO技术
   - 优化

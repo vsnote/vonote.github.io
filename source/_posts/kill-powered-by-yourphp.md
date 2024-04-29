@@ -1,5 +1,6 @@
 ---
 title: YourPHP 去除 Powered by Yourphp 标题后缀
+link: kill-powered-by-yourphp
 tags:
   - php
   - Yourphp

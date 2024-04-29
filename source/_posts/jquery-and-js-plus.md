@@ -1,5 +1,6 @@
 ---
 title: 几个比较常用的Js或者Jquery插件
+link: jquery-and-js-plus
 tags:
   - javascript
   - jquery

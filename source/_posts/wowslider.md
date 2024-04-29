@@ -1,5 +1,6 @@
 ---
 title: WOWSlider 像安装软件一样 DIY 你的 JQuery 幻灯片切换效果
+link: wowslider
 tags:
   - jquery
   - 幻灯片

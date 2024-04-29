@@ -1,5 +1,6 @@
 ---
 title: Sublime Text 3052 for win x86/x64 最新中文破解版
+link: sublime-text-3052-for-win-x86-x64
 tags:
   - sublime text 3
   - 中文

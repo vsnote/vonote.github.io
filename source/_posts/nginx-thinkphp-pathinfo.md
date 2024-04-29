@@ -1,5 +1,6 @@
 ---
 title: 解决 nginx 服务器不支持 ThinkPHP 框架 pathinfo 的解决办法
+link: nginx-thinkphp-pathinfo
 tags:
   - nginx
   - php

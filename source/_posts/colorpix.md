@@ -1,5 +1,6 @@
 ---
 title: ColorPix 一款简约小巧的屏幕颜色取色软件 - 完全绿色版！
+link: colorpix
 tags:
   - 工具
   - 开发

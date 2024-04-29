@@ -1,5 +1,6 @@
 ---
 title: Yourphp v3.0 正式版安装和Ypampz集成环境体验
+link: yourphp-v3
 tags:
   - php
   - Yourphp

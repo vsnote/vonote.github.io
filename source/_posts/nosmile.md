@@ -1,5 +1,6 @@
 ---
 title: 微笑并不代表我快乐
+link: nosmile
 tags:
   - 心情
   - 笔记

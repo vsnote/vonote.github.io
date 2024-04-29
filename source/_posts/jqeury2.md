@@ -1,5 +1,6 @@
 ---
 title: jQuery 2.0 改革性版本，不再支持 IE6/7/8，是福是祸躲不过啊！
+link: jqeury2
 tags:
   - javascript
   - jquery

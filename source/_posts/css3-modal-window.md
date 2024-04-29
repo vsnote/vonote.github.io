@@ -1,5 +1,6 @@
 ---
 title: CSS3实现超酷的窗口Modal效果欣赏
+link: css3-modal-window
 tags:
   - CSS3
   - 分享
