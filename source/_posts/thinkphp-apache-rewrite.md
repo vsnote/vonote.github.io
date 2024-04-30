@@ -1,5 +1,6 @@
 ---
 title: 在Apache服务器中配置ThinkPHP伪静态URL
+link: thinkphp-apache-rewrite
 tags:
   - php
   - PHP框架

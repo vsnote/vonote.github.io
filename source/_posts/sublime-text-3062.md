@@ -1,5 +1,6 @@
 ---
 title: Sublime Text 3062 汉化破解版（Windows/Linux 32/64位版本）
+link: sublime-text-3062
 tags:
   - sublime
   - sublime text 3

@@ -1,5 +1,6 @@
 ---
 title: Tags
+link: tags
 tags: []
 id: '1224'
 categories:

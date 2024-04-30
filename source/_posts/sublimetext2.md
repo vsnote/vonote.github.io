@@ -1,5 +1,6 @@
 ---
 title: Sublime text 2.01代码编辑器快捷键
+link: sublime-text-2-01
 tags:
   - sublime text 2
   - 代码

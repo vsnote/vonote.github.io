@@ -1,5 +1,6 @@
 ---
 title: Thinkcss-前端必备神器！从此告别多浏览器兼容调试！
+link: thinkcss
 tags:
   - CSS
   - ThinkCss
