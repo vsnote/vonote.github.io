@@ -20,7 +20,7 @@ date: 2013-07-19 08:41:16
 
 #### 软件界面
 
-![filezilla2](http://vsnote.test/wp-content/uploads/2013/07/filezilla2.png)
+![filezilla2](../images/uploads/2013/07/filezilla2.png)
 
 #### 功能特点
 

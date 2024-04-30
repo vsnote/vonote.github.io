@@ -12,7 +12,7 @@ categories:
 date: 2013-05-21 13:06:44
 ---
 
-如果你是经常折腾系统的么，那么，肯定会需要这样一个小巧绿色的虚拟光驱！**Virtual Drive Manager**(vdm)  在 PE 系统里面也可以直接使用，支持 .iso、.img、.bin 等常见的镜像文件。 [![virtual driver](http://vsnote.test/wp-content/uploads/2013/05/virtual-driver.jpg)](http://vsnote.test/wp-content/uploads/2013/05/virtual-driver.jpg)  
+如果你是经常折腾系统的么，那么，肯定会需要这样一个小巧绿色的虚拟光驱！**Virtual Drive Manager**(vdm)  在 PE 系统里面也可以直接使用，支持 .iso、.img、.bin 等常见的镜像文件。 [![virtual driver](../images/uploads/2013/05/virtual-driver.jpg)](../images/uploads/2013/05/virtual-driver.jpg)  
 
 #### 下载地址
 

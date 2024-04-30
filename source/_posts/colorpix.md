@@ -13,7 +13,7 @@ categories:
 date: 2013-05-12 10:51:47
 ---
 
-第一次看到它，就被它那灰色质感的外观给折服了。没错，就是它了——ColorPix [![colorpix_1](http://vsnote.test/wp-content/uploads/2013/05/colorpix_1.jpg)](http://vsnote.test/wp-content/uploads/2013/05/colorpix_1.jpg)   非常小巧NICE的界面，支持置顶，按任意键就可以锁定颜色。Ctrl+C复制锁定的颜色。 [![colorpix_2](http://vsnote.test/wp-content/uploads/2013/05/colorpix_2.jpg)](http://vsnote.test/wp-content/uploads/2013/05/colorpix_2.jpg)  
+第一次看到它，就被它那灰色质感的外观给折服了。没错，就是它了——ColorPix [![colorpix_1](../images/uploads/2013/05/colorpix_1.jpg)](../images/uploads/2013/05/colorpix_1.jpg)   非常小巧NICE的界面，支持置顶，按任意键就可以锁定颜色。Ctrl+C复制锁定的颜色。 [![colorpix_2](../images/uploads/2013/05/colorpix_2.jpg)](../images/uploads/2013/05/colorpix_2.jpg)  
 
 Ctrl+M打开放大镜，更精准的找到你需要的颜色！最大可以放大到28倍，还有什么颜色是不能取到呢？
 

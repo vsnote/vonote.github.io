@@ -10,7 +10,7 @@ categories:
 date: 2013-12-04 11:16:26
 ---
 
-3056是最新的开发版本，作者集成了一些常用的插件。比如Emmet、Tag、ConvertToUtf8等，免去了我们自己安装的过程，下载解压就能直接用了。 ![sublime text 3056](http://vsnote.test/wp-content/uploads/2013/12/3056.png)
+3056是最新的开发版本，作者集成了一些常用的插件。比如Emmet、Tag、ConvertToUtf8等，免去了我们自己安装的过程，下载解压就能直接用了。 ![sublime text 3056](../images/uploads/2013/12/3056.png)
 
 #### 下载地址
 

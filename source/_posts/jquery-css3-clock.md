@@ -13,13 +13,13 @@ categories:
 date: 2013-06-20 11:17:03
 ---
 
-有些时候，不得不感叹**CSS3**和**JQuery**结合的妙用，这一刻，感觉世界是多么美好，多么和谐。 分享一个非常漂亮的用CSS3和Jquery制作的数字时钟，还能切换主题，分别是黑色的和白色的，呃，个人比较喜欢黑色的那款。接下来是分享作者的制作过程。 ![clock](http://vsnote.test/wp-content/uploads/2013/06/clock.jpg)  
+有些时候，不得不感叹**CSS3**和**JQuery**结合的妙用，这一刻，感觉世界是多么美好，多么和谐。 分享一个非常漂亮的用CSS3和Jquery制作的数字时钟，还能切换主题，分别是黑色的和白色的，呃，个人比较喜欢黑色的那款。接下来是分享作者的制作过程。 ![clock](../images/uploads/2013/06/clock.jpg)  
 
 #### html代码
 
 主容器是ID为clock的元素，而里面的星期几，上午还是下午，时间，闹钟都在.display元素里面。下面是生成数字时要用到的html。
 
-.digits元素里面用了6个这样用7个span组成的div，他们的任务就是组成一个有效的时间。下面是一个示意图。 ![the_digits_explained](http://vsnote.test/wp-content/uploads/2013/06/the_digits_explained.jpg)
+.digits元素里面用了6个这样用7个span组成的div，他们的任务就是组成一个有效的时间。下面是一个示意图。 ![the_digits_explained](../images/uploads/2013/06/the_digits_explained.jpg)
 
 #### 数字说明
 
@@ -36,7 +36,7 @@ date: 2013-06-20 11:17:03
     opacity:1;
 }
 
-除了中间一个，所有的片段都是可见的，这些span上添加了CSS3转换属性，当在数字之间切换时出现渐变效果。 样式表里有很多其他CSS，就不在这里一一列举了。相信学习CSS的最好方法就是观察它在Firebug、Chrome或者其他浏览器里面的demo代码。 ![the_white_theme](http://vsnote.test/wp-content/uploads/2013/06/the_white_theme.jpg) 很明显，上面展示的是一个白色主题的数字时钟。  要想要时钟工作，我们将使用jQuery生成每个数字的标签，并且设置一个定时器每秒钟更新一次样式，为了更简单，我们使用moment.js(一个处理时间和日期的js库) 库来填补JavaScript原生日期和时间方法的缺陷。 assets/js/script.js
+除了中间一个，所有的片段都是可见的，这些span上添加了CSS3转换属性，当在数字之间切换时出现渐变效果。 样式表里有很多其他CSS，就不在这里一一列举了。相信学习CSS的最好方法就是观察它在Firebug、Chrome或者其他浏览器里面的demo代码。 ![the_white_theme](../images/uploads/2013/06/the_white_theme.jpg) 很明显，上面展示的是一个白色主题的数字时钟。  要想要时钟工作，我们将使用jQuery生成每个数字的标签，并且设置一个定时器每秒钟更新一次样式，为了更简单，我们使用moment.js(一个处理时间和日期的js库) 库来填补JavaScript原生日期和时间方法的缺陷。 assets/js/script.js
 
 $(function(){
  

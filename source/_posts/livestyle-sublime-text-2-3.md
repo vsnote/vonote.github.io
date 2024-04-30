@@ -25,7 +25,7 @@ Emmet LiveStyle 是一个配合 Sublime text 使用的谷歌浏览器插件，�
 
 #### 在 Chrome 中安装 LiveStyle 插件
 
-在 Chrome 应用商店搜索 LiveStyle 或者直接打开[https://chrome.google.com/webstore/detail/emmet-livestyle/diebikgmpmeppiilkaijjbdgciafajmg?utm\_source=chrome-ntp-icon](https://chrome.google.com/webstore/detail/emmet-livestyle/diebikgmpmeppiilkaijjbdgciafajmg?utm_source=chrome-ntp-icon)，安装完后重启浏览器。 ![livestyle](http://vsnote.test/wp-content/uploads/2013/10/livestyle.png) 再打开时，按F12打开开发者工具你会发现多了一个 LiveStyle 的选项卡：   ![livestyle2](http://vsnote.test/wp-content/uploads/2013/10/livestyle2.jpg) 当然，这个是需要在 Sublime Text 里面安装 LiveStyle 这个插件才能启用的。
+在 Chrome 应用商店搜索 LiveStyle 或者直接打开[https://chrome.google.com/webstore/detail/emmet-livestyle/diebikgmpmeppiilkaijjbdgciafajmg?utm\_source=chrome-ntp-icon](https://chrome.google.com/webstore/detail/emmet-livestyle/diebikgmpmeppiilkaijjbdgciafajmg?utm_source=chrome-ntp-icon)，安装完后重启浏览器。 ![livestyle](../images/uploads/2013/10/livestyle.png) 再打开时，按F12打开开发者工具你会发现多了一个 LiveStyle 的选项卡：   ![livestyle2](../images/uploads/2013/10/livestyle2.jpg) 当然，这个是需要在 Sublime Text 里面安装 LiveStyle 这个插件才能启用的。
 
 #### 在Sublime Text 编辑器里面安装 LiveStyle 插件
 

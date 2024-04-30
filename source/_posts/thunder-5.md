@@ -23,11 +23,11 @@ date: 2013-05-17 17:16:01
 7.  支持Firefox和Chrome浏览器，需要迅雷启动的时候才能拉起新建面板；
 8.  整合了资源搜索器，方便找下载资源（还有更强大的功能，自己发现吧）。
 
-\[caption id="attachment\_267" align="alignnone" width="603"\][![down](http://vsnote.test/wp-content/uploads/2013/05/down.jpg)](http://vsnote.test/wp-content/uploads/2013/05/down.jpg) down\[/caption\] 在安装的chrome扩展的时候，可能会出现无法安装的情况。经过几番尝试。得出下以下方法：
+\[caption id="attachment\_267" align="alignnone" width="603"\][![down](../images/uploads/2013/05/down.jpg)](../images/uploads/2013/05/down.jpg) down\[/caption\] 在安装的chrome扩展的时候，可能会出现无法安装的情况。经过几番尝试。得出下以下方法：
 
 > 打开chrome的自定义并控制Gogle Chrome -> 工具 -> 扩展程序。
 
-[![Plus-chrome](http://vsnote.test/wp-content/uploads/2013/05/Plus-chrome.jpg)](http://vsnote.test/wp-content/uploads/2013/05/Plus-chrome.jpg) 在浏览器默认的下载目录里面找到xl\_plugin\_chrome.crx这个文件，拖到刚打开的那个扩展程序窗口里面，添加即可。 [![Version](http://vsnote.test/wp-content/uploads/2013/05/Version.jpg)](http://vsnote.test/wp-content/uploads/2013/05/Version.jpg)
+[![Plus-chrome](../images/uploads/2013/05/Plus-chrome.jpg)](../images/uploads/2013/05/Plus-chrome.jpg) 在浏览器默认的下载目录里面找到xl\_plugin\_chrome.crx这个文件，拖到刚打开的那个扩展程序窗口里面，添加即可。 [![Version](../images/uploads/2013/05/Version.jpg)](../images/uploads/2013/05/Version.jpg)
 
 #### 下载地址
 

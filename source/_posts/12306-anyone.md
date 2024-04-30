@@ -37,7 +37,7 @@ date: 2013-12-27 17:35:25
 
 #### 软件截图
 
-![12306](http://vsnote.test/wp-content/uploads/2013/12/12306.png)
+![12306](../images/uploads/2013/12/12306.png)
 
 #### 软件下载
 

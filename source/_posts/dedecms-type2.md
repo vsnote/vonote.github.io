@@ -14,50 +14,47 @@ date: 2013-07-08 17:54:56
 
 前几天用 **dedecms** 做项目的时候，碰到了一个比较棘手的需求。就是在三级栏目的情况下，要获取它的上级栏目的名字和链接。一开始想着用sql标签来输出，但是因为栏目比较多，可能效率不是很好，于是就弄成了标签的形式。 代码实现如下：
 
-CAttribute->Items,$attlist);
-extract($ctag->CAttribute->Items, EXTR\_SKIP);
+```php
+extract($ctag->CAttribute->Items, EXTR_SKIP);
 $innertext = trim($ctag->GetInnerText());
 
 if($typeid==0) {
-$typeid = ( isset($refObj->TypeLink->TypeInfos\['topid'\]) ? $refObj->TypeLink->TypeInfos\['topid'\] : $envs\['typeid'\] );
+    $typeid = ( isset($refObj->TypeLink->TypeInfos['topid']) ? $refObj->TypeLink->TypeInfos['topid'] : $envs['typeid'] );
 }
 
 //if(empty($typeid)) return '';
-if(empty($typeid)) $typeid=$refObj->TypeLink->TypeInfos\['id'\];
+if(empty($typeid)) $typeid=$refObj->TypeLink->TypeInfos['id'];
 //$row=null;
 //if()
-$row = $dsql->GetOne("Select topid,typedir,isdefault,defaultname,ispart,namerule2,typename,moresite,siteurl,sitepath 
-                     From `#@__arctype` where id='$typeid' ");
-if(!is\_array($row)) return 'sdfsd';
-if(trim($innertext)=='') $innertext = GetSysTemplets("part\_type\_list.htm");
+$row = $dsql->GetOne("Select topid,typedir,isdefault,defaultname,ispart,namerule2,typename,moresite,siteurl,sitepath From `#@__arctype` where id='$typeid' ");
+if(!is_array($row)) return 'sdfsd';
+if(trim($innertext)=='') $innertext = GetSysTemplets("part_type_list.htm");
 
 $dtp = new DedeTagParse();
-$dtp->SetNameSpace('field','\[','\]');
+$dtp->SetNameSpace('field','[',']');
 $dtp->LoadSource($innertext);
-if(!is\_array($dtp->CTags))
-{
-unset($dtp);
-return '';
+if(!is_array($dtp->CTags)) {
+    unset($dtp);
+    return '';
+} else {
+    $row['typelink'] = GetTypeUrl($row['topid'],MfTypedir($row['typedir']),$row['isdefault'],
+    $row['defaultname'],$row['ispart'],$row['namerule2'],$row['siteurl'],$row['sitepath']);
+    foreach($dtp->CTags as $tagid=>$ctag) {
+        if(isset($row[$ctag->GetName()])) $dtp->Assign($tagid,$row[$ctag->GetName()]);
+    }
+    $revalue = $dtp->GetResult();
+    unset($dtp);
+    return $revalue;
 }
-else
-{
-$row\['typelink'\] = GetTypeUrl($row\['topid'\],MfTypedir($row\['typedir'\]),$row\['isdefault'\],
-                    $row\['defaultname'\],$row\['ispart'\],$row\['namerule2'\],$row\['siteurl'\],$row\['sitepath'\]);
-foreach($dtp->CTags as $tagid=>$ctag)
-{
-if(isset($row\[$ctag->GetName()\])) $dtp->Assign($tagid,$row\[$ctag->GetName()\]);
-}
-$revalue = $dtp->GetResult();
-unset($dtp);
-return $revalue;
-}
-}
-?>
 
-把这个命名为type2.lib.php放在include/taglib目录下面，让后再模板里面调用：
+```
 
+把这个命名为`type2.lib.php` 放在`include/taglib`目录下面，让后再模板里面调用：
+
+```html
 {dede:type2}
-    *   [\[field:typename/\]]([field:typelink/])
+    *   [[field:typename/]]([field:typelink/])
 {/dede:type2}
+```
 
 好记性不如烂笔头，还是记录在此，方便以后查询~

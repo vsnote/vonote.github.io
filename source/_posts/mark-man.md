@@ -19,19 +19,19 @@ date: 2013-08-28 09:57:32
 
 #### 标记长度
 
-可以横向、垂直标记和测量元素的长度。按住 Ctrl/Cmd 时还能自动探测元素的边缘，并自动调整自身长度。 ![Mark-man-01](http://vsnote.test/wp-content/uploads/2013/08/feature-01.png)
+可以横向、垂直标记和测量元素的长度。按住 Ctrl/Cmd 时还能自动探测元素的边缘，并自动调整自身长度。 ![Mark-man-01](../images/uploads/2013/08/feature-01.png)
 
 #### 标记颜色
 
-自动读取标记所指的元素的色值。可以任选 RGB/HEX 的表示方式。 ![Mark-man-03](http://vsnote.test/wp-content/uploads/2013/08/feature-03.png)
+自动读取标记所指的元素的色值。可以任选 RGB/HEX 的表示方式。 ![Mark-man-03](../images/uploads/2013/08/feature-03.png)
 
 #### 标记坐标、矩形
 
-可以用来标记某个点的位置。将准心中间的原点拖出来以后，就能同时标记坐标和长宽。 ![Mark-man-02](http://vsnote.test/wp-content/uploads/2013/08/feature-02.png)
+可以用来标记某个点的位置。将准心中间的原点拖出来以后，就能同时标记坐标和长宽。 ![Mark-man-02](../images/uploads/2013/08/feature-02.png)
 
 #### 标记文字内容
 
-如果前面3种标记还不能满足你的需求，就直接用文字来说明吧。 ![Mark-man-03](http://vsnote.test/wp-content/uploads/2013/08/feature-04.png)
+如果前面3种标记还不能满足你的需求，就直接用文字来说明吧。 ![Mark-man-03](../images/uploads/2013/08/feature-04.png)
 
 #### 支持多种图片格式
 

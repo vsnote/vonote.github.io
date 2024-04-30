@@ -18,15 +18,15 @@ date: 2013-07-18 09:56:41
 
 #### **Ypampz截图**
 
-![ypampz](http://vsnote.test/wp-content/uploads/2013/07/ypampz.jpg)  
+![ypampz](../images/uploads/2013/07/ypampz.jpg)  
 
 #### Ypampz运行截图
 
-![ypampz2](http://vsnote.test/wp-content/uploads/2013/07/ypampz2.jpg)   这个程序看起来蛮清爽的，可以无痕迹运行Apache和Mysql，相当于一个绿色版软件。
+![ypampz2](../images/uploads/2013/07/ypampz2.jpg)   这个程序看起来蛮清爽的，可以无痕迹运行Apache和Mysql，相当于一个绿色版软件。
 
 #### Yourphp3.0后台界面：
 
-![yourphp3](http://vsnote.test/wp-content/uploads/2013/07/YP3.jpg) 接下来说说Yourphp3.0的变化：
+![yourphp3](../images/uploads/2013/07/YP3.jpg) 接下来说说Yourphp3.0的变化：
 
 *   程序后台的界面还是一样，并没有啥新鲜感
 *   后台首页多了一个序列号的信息，看来作者是要极力推崇开源程序正版化了

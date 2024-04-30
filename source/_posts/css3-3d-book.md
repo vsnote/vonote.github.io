@@ -18,11 +18,11 @@ date: 2013-08-05 20:31:25
 
 #### 精装书
 
-![AnimatedBooks1](http://vsnote.test/wp-content/uploads/2013/08/AnimatedBooks_011.png) 精装书分为3个部分：封面、书脊和书页，用伪元素增加了一些厚度。 ![cubes](http://vsnote.test/wp-content/uploads/2013/08/cubes.jpg)
+![AnimatedBooks1](../images/uploads/2013/08/AnimatedBooks_011.png) 精装书分为3个部分：封面、书脊和书页，用伪元素增加了一些厚度。 ![cubes](../images/uploads/2013/08/cubes.jpg)
 
 #### 平装书
 
-![AnimatedBooks_02](http://vsnote.test/wp-content/uploads/2013/08/AnimatedBooks_02.png) 相比之下，平装就比精装要简约一点，没有阴影的效果，类似于扁平化的风格。
+![AnimatedBooks_02](../images/uploads/2013/08/AnimatedBooks_02.png) 相比之下，平装就比精装要简约一点，没有阴影的效果，类似于扁平化的风格。
 
 > 原文地址：http://tympanus.net/codrops/2013/07/11/animated-books-with-css-3d-transforms/
 

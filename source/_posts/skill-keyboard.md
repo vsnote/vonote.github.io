@@ -11,7 +11,7 @@ categories:
 date: 2013-06-02 13:43:01
 ---
 
-[![keybord](http://vsnote.test/wp-content/uploads/2013/06/6598232133c34b3a4db404be73f568b2_m-430x200.jpg)](http://vsnote.test/wp-content/uploads/2013/06/6598232133c34b3a4db404be73f568b2_m.jpg)
+[![keybord](../images/uploads/2013/06/6598232133c34b3a4db404be73f568b2_m-430x200.jpg)](../images/uploads/2013/06/6598232133c34b3a4db404be73f568b2_m.jpg)
 
 #### 键盘快捷键
 

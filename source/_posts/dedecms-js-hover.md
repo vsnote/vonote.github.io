@@ -14,25 +14,27 @@ date: 2013-12-30 17:52:02
 
 **HTML代码：**
 
-*   [首页](#)
-*   [栏目页](#)
-*   [栏目页](#)
-*   [栏目页](#)
-*   [栏目页](#)
-*   [栏目页](#)
-*   [栏目页](#)
-*   [栏目页](#)
+```html
+[首页](#)
+[栏目页](#)
+[栏目页](#)
+[栏目页](#)
+[栏目页](#)
+[栏目页](#)
+```
 
 **JS代码：**
 
+```javascript
 //导航
 $(document).ready(function() {
     var url = window.location.href;
-    $(".home").addClass("menu\_dq");
+    $(".home").addClass("menu_dq");
     $("#nav li a").each(function(){
         if(url.indexOf($(this).attr("href")) >= 0 && $(this).attr("href") != "/"){  
-            $(this).addClass("menu\_dq");
-            $(".home").removeClass("menu\_dq");
+            $(this).addClass("menu_dq");
+            $(".home").removeClass("menu_dq");
         }
     });
 });
+```

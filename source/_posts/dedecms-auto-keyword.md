@@ -17,10 +17,17 @@ date: 2013-07-31 14:59:28
 
 #### 织梦自动加内链的实现方法
 
-第一步：在织梦后台>系统>系统基本参数>核心设置>关键字替换（是/否），这里选择“是”，如下图所示： ![dedecms-1](http://vsnote.test/wp-content/uploads/2013/07/dedecms-1.jpg) 第二步：后台>系统>系统基本参数>其他选项>文档内容同一关键词替换次数(0为全部替换)，设置为1，同一个关键词内链只有一个投票权，设置多了没作用，反而加重了蜘蛛的爬行负担，如下图所示： ![dedecms-2](http://vsnote.test/wp-content/uploads/2013/07/dedecms-2.jpg) 第三步：后台>核心>批量维护>文档关键词维护, 在这里面设置关键词以及指向网址的链接，也可以手动添加自己需要的关键词和链接，如下图所示： ![dedecms-3](http://vsnote.test/wp-content/uploads/2013/07/dedecms-3.jpg) 第四步：进一步优化。修改源文件： include/arc.archives.class.php ，给这个超链接加了一个<u>的标签，如下图，其实我们可以给它改为<strong>，关且给关键词加上比较醒目的红色，方便阅读者区分。 ![dedecms-4](http://vsnote.test/wp-content/uploads/2013/07/dedecms-4.jpg) 修改之前的代码：
+1. 在织梦后台 -> 系统 -> 系统基本参数 -> 核心设置 -> 关键字替换（是/否），这里选择“是”，如下图所示： ![dedecms-1](../images/uploads/2013/07/dedecms-1.jpg)
+2. 后台 -> 系统 -> 系统基本参数 -> 其他选项 -> 文档内容同一关键词替换次数(0为全部替换)，设置为1，同一个关键词内链只有一个投票权，设置多了没作用，反而加重了蜘蛛的爬行负担，如下图所示： ![dedecms-2](../images/uploads/2013/07/dedecms-2.jpg)
+3. 后台 -> 核心 -> 批量维护 -> 文档关键词维护, 在这里面设置关键词以及指向网址的链接，也可以手动添加自己需要的关键词和链接，如下图所示： ![dedecms-3](../images/uploads/2013/07/dedecms-3.jpg)
+4. 进一步优化。修改源文件： `include/arc.archives.class.php` ，给这个超链接加了一个`<u>`的标签，如下图，其实我们可以给它改为`<strong>`，关且给关键词加上比较醒目的红色，方便阅读者区分。 ![dedecms-4](../images/uploads/2013/07/dedecms-4.jpg) 修改之前的代码：
 
-$kaarr\[\] = "[$key]($key_url)";
+```php
+$kaarr[] = "[$key]($key_url)";
+```
 
 修改之后的代码：
 
-$kaarr\[\] = "[**$key**]($key_url)";
+```php
+$kaarr[] = "[**$key**]($key_url)";
+```

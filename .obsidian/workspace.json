@@ -1,0 +1,173 @@
+{
+  "main": {
+    "id": "3c52ae1ddc09f3f8",
+    "type": "split",
+    "children": [
+      {
+        "id": "ec7961eec845ff8b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1ef5f2a0a4b16d14",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/windows8-1-rtm-pro.md",
+                "mode": "source",
+                "source": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "9a5c69620c48078c",
+    "type": "split",
+    "children": [
+      {
+        "id": "a19f96bfee3279e2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "84ee2c593abe9aa4",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "2b561a332858611f",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "222d9a8ae083bcf7",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "e905382bf77b8be2",
+    "type": "split",
+    "children": [
+      {
+        "id": "cf5bb0713b787b80",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "cf7b6bbdf8084ef0",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "source/_posts/windows8-1-rtm-pro.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "187285546acf95c0",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "source/_posts/windows8-1-rtm-pro.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "a36c160792262f7c",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "54566dcc75985f0e",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "source/_posts/windows8-1-rtm-pro.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false
+    }
+  },
+  "active": "1ef5f2a0a4b16d14",
+  "lastOpenFiles": [
+    "source/_posts/win7-ubuntu11-04.md",
+    "source/images/uploads/crayon-syntax-highlighter/themes",
+    "source/images/uploads/crayon-syntax-highlighter/langs",
+    "source/images/uploads/crayon-syntax-highlighter/fonts",
+    "source/images/uploads/crayon-syntax-highlighter",
+    "source/images/uploads/2018/04",
+    "source/images/uploads/2018/03",
+    "source/images/uploads/2018/02",
+    "source/images/uploads/2018/01",
+    "source/images/uploads/2018",
+    "source/images/uploads/2013/12/35232eb8d88fab2687047c130b5af2527da6723a2c3b3-rcKhB6_fw658-430x200.jpg",
+    "source/images/uploads/2013/12/35232eb8d88fab2687047c130b5af2527da6723a2c3b3-rcKhB6_fw658.jpg",
+    "source/images/uploads/2013/12/35232eb8d88fab2687047c130b5af2527da6723a2c3b3-rcKhB6_fw658-110x110.jpg",
+    "source/images/uploads/2013/12/35232eb8d88fab2687047c130b5af2527da6723a2c3b3-rcKhB6_fw658-140x100.jpg",
+    "source/images/uploads/2013/12/3056.png",
+    "source/images/uploads/2013/12/3056-430x200.png",
+    "source/images/uploads/2013/12/3056-140x100.png",
+    "source/images/uploads/2013/12/3056-110x110.png",
+    "source/images/uploads/2013/12/2013-12-26_164654.png",
+    "source/images/uploads/2013/12/2013-12-26_164654-430x200.png",
+    "source/images/uploads/2013/12"
+  ]
+}
