@@ -52,7 +52,7 @@ services:
 docker compose up -d
 ```
 
-正常的话就可以通过 [http://localhost:8006](http://localhost:8006) 来访问虚拟机了，不过浏览器对硬件的支持不是很好，作者建议通过 rdp 来访问。需要注意的是，我在 windows 和 macos 系统上都部署了，但是本机都不能通过 rdp 连接到 docker 里面的虚拟机，通过局域网是可以正常访问的。
+正常的话就可以通过 `http://localhost:8006` 来访问虚拟机了，不过浏览器对硬件的支持不是很好，作者建议通过 rdp 来访问。需要注意的是，我在 windows 和 macos 系统上都部署了，但是本机都不能通过 rdp 连接到 docker 里面的虚拟机，通过局域网是可以正常访问的。
 
 ![winxp](/images/winxp.png)
 
