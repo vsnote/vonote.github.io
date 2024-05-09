@@ -43,8 +43,8 @@ services:
       - NET_ADMIN
     ports:
       - 8006:8006
-      - 3390:3389/tcp
-      - 3390:3389/udp
+      - 3389:3389/tcp
+      - 3389:3389/udp
     stop_grace_period: 2m
     restart: on-failure
     volumes:
@@ -59,7 +59,8 @@ services:
 docker compose up -d
 ```
 
-正常的话就可以通过 `http://localhost:8006` 来访问虚拟机了，不过浏览器对硬件的支持不是很好，作者建议通过 rdp 来访问。需要注意的是，我在 windows 和 macos 系统上都部署了，但是本机都不能通过 rdp 连接到 docker 里面的虚拟机，通过局域网是可以正常访问的。
+正常的话就可以通过 `http://localhost:8006` 来访问虚拟机了，不过浏览器对硬件的支持不是很好，作者建议通过 rdp 来访问。
+需要注意的是，如果用 rdp 连接不到 docker 里面的系统，需要先把 docker 系统里面的防火墙关闭。
 
 ![winxp](/images/winxp.png)
 
