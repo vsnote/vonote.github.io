@@ -11,19 +11,25 @@ tags:
 最近在网上看到一个 Git 项目 [dockur/windows](https://github.com/dockur/windows)，可以用 Docker 安装 原版的 Windows 系统，很久没折腾过系统了，想尝试一下。以下是整个安装的过程。
 
 ## 直接运行
+
 文档里面有直接运行的脚本，但是安装有系统是固定的链接下载的，都是英文版本。
+
 ```bash
 docker run -it --rm --name windows -p 8006:8006 --device=/dev/kvm --cap-add NET_ADMIN --stop-timeout 120 dockurr/windows
 ```
+
 ## 自定义运行
+
 首先把需要安装的系统镜像下载下来，这里推荐 [Itellyou](https://next.itellyou.cn)，这里面基本上都是原版系统，不过需要安装迅雷才能下载。
 
 然后把项目 clone 下来：
-```
+
+```base
 git clone https://github.com/dockur/windows.git
 ```
 
 修改 compose.yml
+
 ```yml
 services:
   windows:
@@ -48,7 +54,8 @@ services:
 ```
 
 最后执行命令：
-```
+
+```bash
 docker compose up -d
 ```
 
