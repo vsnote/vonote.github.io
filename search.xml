@@ -2794,19 +2794,6 @@ $(&quot;#text_id&quot;).val().split(&quot;,&quot;); //将Text的Value值以&#39;
       </tags>
   </entry>
   <entry>
-    <title>窈窕淑女，君子好逑</title>
-    <url>/ym520.html</url>
-    <content><![CDATA[<p>她，就像是一个精灵，突然的出现在我的世界。 我，就像被她施了魔法，平静的心开始出现涟漪。 这是多年没有出现过的感觉啊，突然觉得世界是多么美妙。 开始期待每一天的早晨，想着她，想着她熟睡的样子。 我知道，我在她的生命中只是一个过客，甚至连回忆都不曾在她的脑海里停留。 但我还是每天都带着期望，期望她某一天能想到我，哪怕只是一秒的惊鸿。</p>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>情感</tag>
-        <tag>文字</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>yourphp文章上一篇下一篇代码分享</title>
     <url>/yourphp-next-pre.html</url>
     <content><![CDATA[<p>前两天用 Yourphp 做一个项目，从优化的角度来考虑，要给文章加上上一篇和下一篇，可偏偏 Yourphp 里面没有这个标签，无奈只好从网上面搜索，还真让我找到一点有用的东西。 文章页的模版是通过 <code>Yourphp&gt;Lib&gt;Action&gt;BaseAction.class.php</code> 里面的一个 <code>show()</code> 方法解析的。 在这个方法里面加上两个变量，我这里用 <code>$pre</code> 代表上一篇，<code>$next</code> 代表下一篇。 为了方便，把代码贴出来。</p>
