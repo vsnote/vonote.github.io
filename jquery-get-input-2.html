@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"vsnote.me","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="多选控件checkbox的第二个元素被打勾 $(“input[name&#x3D;items]“).get(1).checked &#x3D; true; &#x2F;&#x2F;打勾$(“input[name&#x3D;items]“).get(1).checked &#x3D; false; &#x2F;&#x2F;不打勾if($(“input[name&#x3D;item][value&amp;#x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JQuery 获取 input 值的多种方法">
+<meta property="og:url" content="https://vsnote.me/jquery-get-input-2.html">
+<meta property="og:site_name" content="码农笔记">
+<meta property="og:description" content="多选控件checkbox的第二个元素被打勾 $(“input[name&#x3D;items]“).get(1).checked &#x3D; true; &#x2F;&#x2F;打勾$(“input[name&#x3D;items]“).get(1).checked &#x3D; false; &#x2F;&#x2F;不打勾if($(“input[name&#x3D;item][value&amp;#x">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2013-06-13T14:58:25.000Z">
+<meta property="article:modified_time" content="2024-04-30T02:27:27.120Z">
+<meta property="article:author" content="votan">
+<meta property="article:tag" content="技巧">
+<meta property="article:tag" content="代码">
+<meta property="article:tag" content="开发">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="jquery">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://vsnote.me/jquery-get-input-2.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://vsnote.me/jquery-get-input-2.html","path":"jquery-get-input-2.html","title":"JQuery 获取 input 值的多种方法"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>JQuery 获取 input 值的多种方法 | 码农笔记</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">码农笔记</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">热爱，分享。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E9%80%89%E6%8E%A7%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">多选控件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E9%80%89%E6%8E%A7%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">单选控件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8B%E6%8B%89%E6%8E%A7%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">下拉控件</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">votan</p>
+  <div class="site-description" itemprop="description">用心记录，分享技术。</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">122</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">164</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://vsnote.me/jquery-get-input-2.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="votan">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="码农笔记">
+      <meta itemprop="description" content="用心记录，分享技术。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="JQuery 获取 input 值的多种方法 | 码农笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          <a href="/jquery-get-input-2" class="post-title-link post-title-link-external" itemprop="url">JQuery 获取 input 值的多种方法<i class="fa fa-external-link-alt"></i></a>
+          
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2013-06-13 22:58:25" itemprop="dateCreated datePublished" datetime="2013-06-13T22:58:25+08:00">2013-06-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-04-30 10:27:27" itemprop="dateModified" datetime="2024-04-30T10:27:27+08:00">2024-04-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h4 id="多选控件"><a href="#多选控件" class="headerlink" title="多选控件"></a>多选控件</h4><p>checkbox的第二个元素被打勾</p>
+<p>$(“input[name&#x3D;items]“).get(1).checked &#x3D; true; &#x2F;&#x2F;打勾<br>$(“input[name&#x3D;items]“).get(1).checked &#x3D; false; &#x2F;&#x2F;不打勾<br>if($(“input[name&#x3D;item][value&#x3D;’val’]“).attr(“checked”)&#x3D;&#x3D;true)<br>&#x2F;&#x2F;判断是否已经打勾</p>
+<p>name即控件name属性,value即控件value属性 可以不指定属性值，因一组checkbox的value值都会保存其在数据库中对应的id，最好写成如下方式</p>
+<p>if($(“input[name&#x3D;row_checkbox]“).attr(“checked”)&#x3D;&#x3D;true){<br>    alert(“j”);<br>}else{<br>    alert(“请选择数据！”);<br>}</p>
+<p>另，还可以写成</p>
+<p>if($(“[name&#x3D;row_checkbox]“).attr(“checked”)&#x3D;&#x3D;true);<br>    checkbox:$(“input[name&#x3D;’checkbox’:checked]“).each(function(){<br>    var val &#x3D; $(this).val();<br>});</p>
+<h4 id="单选控件"><a href="#单选控件" class="headerlink" title="单选控件"></a>单选控件</h4><p>获取一组radio被选中项的值</p>
+<p>var item &#x3D; $(“input[name&#x3D;items][checked]“).val();<br>&#x2F;&#x2F;radio单选组的第二个元素为当前选中项<br>$(“input[@name&#x3D;items]“).get(1).checked &#x3D; true;<br>$(“input[name&#x3D;items]“).attr(“checked”, “1”);<br>&#x2F;&#x2F;radio的value&#x3D;’val’的元素为当前选中项</p>
+<p>$(“input[name&#x3D;items] [value&#x3D;’val’]“).attr(“checked”,”checked”);<br>$(“input[type&#x3D;radio][checked]“).val();<br>$(“input[type&#x3D;radio]“).attr(“checked”,”2”);&#x2F;&#x2F;设置value&#x3D;2的项目为当前选中项、</p>
+<h4 id="下拉控件"><a href="#下拉控件" class="headerlink" title="下拉控件"></a>下拉控件</h4><p>获取select被选中项的文本</p>
+<p>var item &#x3D; $(“select[name&#x3D;items] option[selected]“).text();<br>$(“select[name&#x3D;items]“).find(“option:selected”).text();</p>
+<p>&#x2F;&#x2F;select下拉框的第二个元素为当前选中值<br>$(“#select_id”)[0].selectedIndex &#x3D; 1;</p>
+<p>&#x2F;&#x2F;select下拉框value &#x3D; ‘val’的元素为当前选中项<br>$(“select[name&#x3D;items] option[value&#x3D;’val’]“).attr(“selected”,”selected”);<br>$(“select”).val();&#x2F;&#x2F;select的value值<br>$(“select”).find(“option:selected”).text();&#x2F;&#x2F;select选中的text 值<br>$(“#sel”.attr(“value”,”-sel3”);&#x2F;&#x2F;设置value&#x3D;-sel3的项目为当前选中项<br>$(“11112222”).appendTo(“#sel”)&#x2F;&#x2F;添加下拉框的option<br>$(“#sel”).empty();&#x2F;&#x2F;清空下拉框</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%8A%80%E5%B7%A7/" rel="tag"># 技巧</a>
+              <a href="/tags/%E4%BB%A3%E7%A0%81/" rel="tag"># 代码</a>
+              <a href="/tags/%E5%BC%80%E5%8F%91/" rel="tag"># 开发</a>
+              <a href="/tags/js/" rel="tag"># js</a>
+              <a href="/tags/jquery/" rel="tag"># jquery</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/ios7.html" rel="prev" title="苹果I0S7 - 一次不成功的山寨(个人观点，欢迎吐槽)">
+                  <i class="fa fa-angle-left"></i> 苹果I0S7 - 一次不成功的山寨(个人观点，欢迎吐槽)
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/funny-coin-in-collarbone.html" rel="next" title="恶搞各种霸气、销魂、凶器的锁骨坑">
+                  恶搞各种霸气、销魂、凶器的锁骨坑 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">votan</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

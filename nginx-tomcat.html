@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"vsnote.me","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="动静分离总的来说就是把请求到服务端的动态请求和静态资源的请求分离开，这样在请求量很大的时候能够缓解服务端的压力。之前项目需要用到 nginx 和 tomcat 结合来实现动静分离和负载均衡，在这里整理一下做为总结。  动静分离原理服务端接收来自客户端的请求中，有一部分是静态资源的请求，例如 html,css,js 和图片资源等等，有一部分是动态数据的请求。因为 tomcat 处理静态资源的速度比">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nginx+tomcat 实现动静分离和负载均衡">
+<meta property="og:url" content="https://vsnote.me/nginx-tomcat.html">
+<meta property="og:site_name" content="码农笔记">
+<meta property="og:description" content="动静分离总的来说就是把请求到服务端的动态请求和静态资源的请求分离开，这样在请求量很大的时候能够缓解服务端的压力。之前项目需要用到 nginx 和 tomcat 结合来实现动静分离和负载均衡，在这里整理一下做为总结。  动静分离原理服务端接收来自客户端的请求中，有一部分是静态资源的请求，例如 html,css,js 和图片资源等等，有一部分是动态数据的请求。因为 tomcat 处理静态资源的速度比">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://vsnote.me/images/uploads/2016/04/b0d887aacf05b3b5ea74018b66a6039c989668c3.png">
+<meta property="article:published_time" content="2016-04-02T03:33:05.000Z">
+<meta property="article:modified_time" content="2024-05-09T08:23:45.858Z">
+<meta property="article:author" content="votan">
+<meta property="article:tag" content="nginx">
+<meta property="article:tag" content="tomcat">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://vsnote.me/images/uploads/2016/04/b0d887aacf05b3b5ea74018b66a6039c989668c3.png">
+
+
+<link rel="canonical" href="https://vsnote.me/nginx-tomcat.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://vsnote.me/nginx-tomcat.html","path":"nginx-tomcat.html","title":"nginx+tomcat 实现动静分离和负载均衡"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>nginx+tomcat 实现动静分离和负载均衡 | 码农笔记</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">码农笔记</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">热爱，分享。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">动静分离原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.</span> <span class="nav-text">动静分离的实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85"><span class="nav-number">3.</span> <span class="nav-text">环境安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jdk-%E5%AE%89%E8%A3%85"><span class="nav-number">4.</span> <span class="nav-text">jdk 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB"><span class="nav-number">5.</span> <span class="nav-text">配置动静分离</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">6.</span> <span class="nav-text">负载均衡的实现</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">votan</p>
+  <div class="site-description" itemprop="description">用心记录，分享技术。</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">122</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">164</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://vsnote.me/nginx-tomcat.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="votan">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="码农笔记">
+      <meta itemprop="description" content="用心记录，分享技术。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="nginx+tomcat 实现动静分离和负载均衡 | 码农笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          <a href="/nginx-tomcat" class="post-title-link post-title-link-external" itemprop="url">nginx+tomcat 实现动静分离和负载均衡<i class="fa fa-external-link-alt"></i></a>
+          
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-04-02 11:33:05" itemprop="dateCreated datePublished" datetime="2016-04-02T11:33:05+08:00">2016-04-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-05-09 16:23:45" itemprop="dateModified" datetime="2024-05-09T16:23:45+08:00">2024-05-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%88%86%E4%BA%AB/" itemprop="url" rel="index"><span itemprop="name">分享</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><blockquote>
+<p>动静分离总的来说就是把请求到服务端的动态请求和静态资源的请求分离开，这样在请求量很大的时候能够缓解服务端的压力。之前项目需要用到 nginx 和 tomcat 结合来实现动静分离和负载均衡，在这里整理一下做为总结。</p>
+</blockquote>
+<h2 id="动静分离原理"><a href="#动静分离原理" class="headerlink" title="动静分离原理"></a>动静分离原理</h2><p>服务端接收来自客户端的请求中，有一部分是静态资源的请求，例如 html,css,js 和图片资源等等，有一部分是动态数据的请求。<br>因为 tomcat 处理静态资源的速度比较慢，所以我们可以考虑把所有静态资源独立开来，交给处理静态资源更快的服务器例如 nginx 处理，而把动态请求交给 tomcat 处理。<br>如下图所示(图画的有点丑，将就着看看)，我们在机器上同时安装了 nginx 和 tomcat,把所有的静态资源都放置在 nginx 的 webroot 目录下面，把动态请求的程序都放在 tomcat 的 webroot 目录下面，当客户端访问服务端的时候，如果是静态资源的请求，就直接到 nginx 的 webroot 目录下面获取资源，如果是动态资源的请求，nginx 利用反向代理的原理，把请求转发给 tomcat 进行处理，这样就实现了动静分离，提高了服务器处理请求的性能。 <a href="../images/uploads/2016/04/b0d887aacf05b3b5ea74018b66a6039c989668c3.png"><img src="/../images/uploads/2016/04/b0d887aacf05b3b5ea74018b66a6039c989668c3.png" alt="b0d887aacf05b3b5ea74018b66a6039c989668c3"></a></p>
+<h2 id="动静分离的实现"><a href="#动静分离的实现" class="headerlink" title="动静分离的实现"></a>动静分离的实现</h2><p><em>注：本文是在 centos-6.5 64 位操作系统搭建的</em></p>
+<h2 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h2><p>首先下载 jdk、tomcat 和 nginx 的安装包，可到各大官网下载，这里我的jdk用的是1.7版本，tomcat 用的是8.0版本，nginx 用的是1.7.7版本。</p>
+<h2 id="jdk-安装"><a href="#jdk-安装" class="headerlink" title="jdk 安装"></a>jdk 安装</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//解压到 /usr/local/java/目录</span><br><span class="line"># tar -zxvf jdk-7u67-linux-x64.tar.gz －C /usr/local/java/</span><br><span class="line">//配置环境变量</span><br><span class="line"># vi /etc/profile</span><br></pre></td></tr></table></figure>
+
+<p>在最后加入以下几行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">JAVA_HOME=/usr/java/jdk1.7.0_71</span><br><span class="line">CLASS_PATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar    </span><br><span class="line">PATH=$JAVA_HOME/bin:$PATH                                      </span><br><span class="line">export JAVA_HOME CLASS_PATH PATH</span><br></pre></td></tr></table></figure>
+
+<p>执行下面命令立即生效</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># source /etc/profile</span><br></pre></td></tr></table></figure>
+
+<p>tomcat 安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\# tar zxvf apache-tomcat-7.0.29.tar.gz  -C /usr/local/tomcat/</span><br></pre></td></tr></table></figure>
+
+<p>tomcat 安装后不用做配置，但是要测试是否能跑起来，这里不做过多的描述 nginx 安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//在nginx包的目录解压nginx,可解压缩到任意目录，这里解压缩到当前目录</span><br><span class="line"># tar zxvf nginx-1.7.7.tar.gz                    </span><br><span class="line">//进入nginx-1.7.7目录，进行编译                    </span><br><span class="line"># cd nginx-1.7.7                                  </span><br><span class="line"># ./configure --prefix=/usr/loacl/nginx/          </span><br><span class="line"># make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+<p>nginx需要编译，所以发现无法编译，那么可能是机器没有安装编译环境，需要安装编译环境，执行如下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc gcc-c++ autoconf automake</span><br><span class="line">yum -y install zlib zlib-devel openssl openssl-devel pcre-devel</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置动静分离"><a href="#配置动静分离" class="headerlink" title="配置动静分离"></a>配置动静分离</h2><p>这里主要是配置 nginx 的nginx.conf 文件,nginx 的配置可以参考网上其他资料，这里不做详细描述。 进入 &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F; 目录，编辑 nginx.conf 文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cd /usr/local/nginx/conf/                   </span><br><span class="line"># vi nginx.conf</span><br></pre></td></tr></table></figure>
+
+<p>这里我们主要修改的是http模块里面的server节点，其他配置不用改，配置如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen       80;                       </span><br><span class="line">        server_name  127.0.0.1;               </span><br><span class="line">        root  /usr/local/html/;</span><br><span class="line">        index  index.html index.htm index.jsp;</span><br><span class="line"></span><br><span class="line">        charset koi8-r;</span><br><span class="line"></span><br><span class="line">        access_log  logs/host.access.log  main;</span><br><span class="line"></span><br><span class="line">        location ~ \.(jsp)$ &#123;</span><br><span class="line">           proxy_pass http://www.tomcat.com:8080;</span><br><span class="line">           proxy_redirect off;</span><br><span class="line">           proxy_set_header HOST $host;</span><br><span class="line">           proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">           client_max_body_size 10m;</span><br><span class="line">           client_body_buffer_size 128k;</span><br><span class="line">           proxy_connect_timeout 90;</span><br><span class="line">           proxy_send_timeout 90;</span><br><span class="line">           proxy_read_timeout 90;</span><br><span class="line">           proxy_buffer_size 4k;</span><br><span class="line">           proxy_buffers 4 32k;</span><br><span class="line">           proxy_busy_buffers_size 64k;</span><br><span class="line">           proxy_temp_file_write_size 64k;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        location ~ \.(gifjpgpngbmpswfhtmljscsshtm)$</span><br><span class="line">        &#123;</span><br><span class="line">         expires 10d;</span><br><span class="line">        &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中 listen 表示nginx监听的端口，server_name是nginx对外提供访问的ip或者域名，root是nginx存放资源的路径。 下面的两个 location 节点就是动静分离的配置了，location有下面6种匹配方式：</p>
+<ul>
+<li>&#x3D;：精确匹配</li>
+<li>空修饰符且精确匹配</li>
+<li>^~：匹配前面</li>
+<li>~：使用正则表达式匹配，大小写敏感</li>
+<li>~*：使用正则表达式匹配，大小写不敏感，和4没有高低之分</li>
+<li>空修饰符且前面匹配</li>
+</ul>
+<p>这里我们用第4种 ～ ，使用正则表达式，并且大小写敏感，第一个 location 表示以 .jsp 结尾的请求，我们利用反向代理的方式，把请求转发给tomcat进行处理，其中 proxy_pass 需要配置tomcat的ip。我们也可以配置restful api形式的请求，例如我们想把请求接口的 url 里面带有字母 a 的请求转发给 tomcat 进行处理，我们可以配置 location ~ a 即可。 第二个location表示以 .gif .jpg .js 等结尾的请求，我们直接到nginx的root目录里面获取资源，这定义用户浏览器缓存的时间为10天，如果静态页面不常更新，可以设置更长，这样可以节省带宽和缓解服务器的压力。 至此，我们已经配置好动静分离了，启动nginx和tomcat就可以了。</p>
+<h2 id="负载均衡的实现"><a href="#负载均衡的实现" class="headerlink" title="负载均衡的实现"></a>负载均衡的实现</h2><p>配置好动静分离，那么负责负载也就很简单了。负载均衡就是将 tomcat 的动态请求分摊到多个 tomcat 执行，这个在请求量很大的时候能缓解服务端的压力，主要的配置是在 nginx.conf 的配置文件的http节点里面添加 upstream 节点，如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">upstream tomcats&#123;                               </span><br><span class="line">    server 10.11.68.56:8080 weight=1;     </span><br><span class="line">    server 10.11.68.57:8080 weight=1;       </span><br><span class="line">    server 10.11.68.58:8080 weight=1;     </span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">    listen       80;                       </span><br><span class="line">    server\_name  172.24.69.127;                </span><br><span class="line">    root  /usr/local/html/;  </span><br><span class="line">    index  index.html index.htm index.jsp;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">       proxy\_pass http://tomcats;</span><br><span class="line">       proxy\_redirect off;</span><br><span class="line">       proxy\_set\_header HOST $host;</span><br><span class="line">       proxy\_set\_header X-Real-IP $remote\_addr;</span><br><span class="line">       proxy\_set\_header X-Forwarded-For $proxy\_add\_x\_forwarded\_for;</span><br><span class="line">       client\_max\_body\_size 10m;</span><br><span class="line">       client\_body\_buffer\_size 128k;</span><br><span class="line">       proxy\_connect\_timeout 90;</span><br><span class="line">       proxy\_send\_timeout 90;</span><br><span class="line">       proxy\_read\_timeout 90;</span><br><span class="line">       proxy\_buffer\_size 4k;</span><br><span class="line">       proxy\_buffers 4 32k;</span><br><span class="line">       proxy\_busy\_buffers\_size 64k;</span><br><span class="line">       proxy\_temp\_file\_write\_size 64k;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中，upstream 节点里面配置的是每个参与负载均衡的tomcat的ip, weigth 参数表示权值，权值越高被分配到的几率越大,如果每台机器的 weight&#x3D;1,表示每台机器被分配到的概率是一样的。<br>tomcats 是 upstream 配置项的名称，可以自定义，但是一定要和 locatin 节点里面的 proxy_pass 配置一样 至此，我们已经把动静分离和负载均衡配置好了。</p>
+<p>文章来源：<a target="_blank" rel="noopener" href="http://139.196.14.76/t/nginx-tomcat/260">Nginx+tomcat实现动静分离和负载均衡</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/nginx/" rel="tag"># nginx</a>
+              <a href="/tags/tomcat/" rel="tag"># tomcat</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/php-screen.html" rel="prev" title="PHP 实现即时网站截图">
+                  <i class="fa fa-angle-left"></i> PHP 实现即时网站截图
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/undefined.html" rel="next" title="10个国外的HTML5响应式框架">
+                  10个国外的HTML5响应式框架 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">votan</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

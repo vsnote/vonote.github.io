@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"vsnote.me","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="MyISAM：一、优化参数这个表引擎只存储索引的缓存，而不存储数据的缓存。可以通过设置KEY_BUFFER_SIZE设置缓存大小，通过KEY_BUFER_BLOCK_SIZE设置cache block的size。 KEY_CACHE_DIVISION_LIMIT是设置LRU链表中hot area和warm area的分界值，为1-100之间。系统默认为100，也就是只有warm chain。KEY">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入了解 Mysql 表引擎优化">
+<meta property="og:url" content="https://vsnote.me/mysql-engine.html">
+<meta property="og:site_name" content="码农笔记">
+<meta property="og:description" content="MyISAM：一、优化参数这个表引擎只存储索引的缓存，而不存储数据的缓存。可以通过设置KEY_BUFFER_SIZE设置缓存大小，通过KEY_BUFER_BLOCK_SIZE设置cache block的size。 KEY_CACHE_DIVISION_LIMIT是设置LRU链表中hot area和warm area的分界值，为1-100之间。系统默认为100，也就是只有warm chain。KEY">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2014-08-26T08:07:45.000Z">
+<meta property="article:modified_time" content="2024-04-30T02:27:27.316Z">
+<meta property="article:author" content="votan">
+<meta property="article:tag" content="mysql优化">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://vsnote.me/mysql-engine.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://vsnote.me/mysql-engine.html","path":"mysql-engine.html","title":"深入了解 Mysql 表引擎优化"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>深入了解 Mysql 表引擎优化 | 码农笔记</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">码农笔记</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">热爱，分享。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MyISAM%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">MyISAM：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%BC%98%E5%8C%96%E5%8F%82%E6%95%B0"><span class="nav-number">1.1.</span> <span class="nav-text">一、优化参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9Akey-cache%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">1.1.1.</span> <span class="nav-text">多key cache的使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E9%A2%84%E5%8A%A0%E8%BD%BD"><span class="nav-number">1.2.</span> <span class="nav-text">二、预加载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81null%E5%80%BC%E5%AF%B9%E7%BB%9F%E8%AE%A1%E4%BF%A1%E6%81%AF%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="nav-number">1.3.</span> <span class="nav-text">三、null值对统计信息的影响</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%B9%B6%E5%8F%91%E4%BC%98%E5%8C%96"><span class="nav-number">1.4.</span> <span class="nav-text">四、并发优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%85%B6%E4%BB%96%E4%BC%98%E5%8C%96"><span class="nav-number">1.5.</span> <span class="nav-text">五、其他优化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Innodb%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">Innodb：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E3%80%81innodb%E7%BC%93%E5%AD%98%E4%BC%98%E5%8C%96"><span class="nav-number">2.1.</span> <span class="nav-text">第一、innodb缓存优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E3%80%81%E4%BA%8B%E5%8A%A1%E4%BC%98%E5%8C%96"><span class="nav-number">2.2.</span> <span class="nav-text">第二、事务优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E4%BC%98%E5%8C%96"><span class="nav-number">2.3.</span> <span class="nav-text">三、数据存储优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%85%B6%E4%BB%96%E4%BC%98%E5%8C%96"><span class="nav-number">2.4.</span> <span class="nav-text">四、其他优化</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">votan</p>
+  <div class="site-description" itemprop="description">用心记录，分享技术。</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">122</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">164</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://vsnote.me/mysql-engine.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="votan">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="码农笔记">
+      <meta itemprop="description" content="用心记录，分享技术。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="深入了解 Mysql 表引擎优化 | 码农笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          <a href="/mysql-engine" class="post-title-link post-title-link-external" itemprop="url">深入了解 Mysql 表引擎优化<i class="fa fa-external-link-alt"></i></a>
+          
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2014-08-26 16:07:45" itemprop="dateCreated datePublished" datetime="2014-08-26T16:07:45+08:00">2014-08-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-04-30 10:27:27" itemprop="dateModified" datetime="2024-04-30T10:27:27+08:00">2024-04-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%88%86%E4%BA%AB/" itemprop="url" rel="index"><span itemprop="name">分享</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="MyISAM："><a href="#MyISAM：" class="headerlink" title="MyISAM："></a>MyISAM：</h1><h2 id="一、优化参数"><a href="#一、优化参数" class="headerlink" title="一、优化参数"></a>一、优化参数</h2><p>这个表引擎只存储索引的缓存，而不存储数据的缓存。可以通过设置KEY_BUFFER_SIZE设置缓存大小，通过KEY_BUFER_BLOCK_SIZE设置cache block的size。 KEY_CACHE_DIVISION_LIMIT是设置LRU链表中hot area和warm area的分界值，为1-100之间。系统默认为100，也就是只有warm chain。KEY_CACHE_DIVISION_LIMIT告诉mysql该如何将整个cachechain划分为hot area和warm area。 KEY_CACHE_AGE_GHRESHOLD，控制cacheblock从hotarea降级到warmarea的限制，系统默认为300，最小设置为100.值越小，被降级的可能性越大。</p>
+<h3 id="多key-cache的使用"><a href="#多key-cache的使用" class="headerlink" title="多key cache的使用"></a>多key cache的使用</h3><p>msyql4.1.1开始，myisam支持多个key cache。可以根据不同的需求，设置多个keycache 了。如，将使用非常频繁但是更新操作很少的数据放入一个keycaceh中以防止在公共keycache中被清除出去。那些使用不是很频繁而且经常会更新 的数据放在另外一个keycache中。 mysql官方建议在比较繁忙的系统上使用三个keycache【key cache就是索引缓存】:</p>
+<ul>
+<li>hotcache：使用20%的大小，用来存放使用非常频繁而且更新少的表索引</li>
+<li>coldcache：使用20%的大小，用来存放更新很频繁的表索引</li>
+<li>warmcache：使用剩下的60%空间，作为整个系统的默认keycache。</li>
+</ul>
+<h2 id="二、预加载"><a href="#二、预加载" class="headerlink" title="二、预加载"></a>二、预加载</h2><p>在一个新系统刚上线的时候，系统会因为cache中没有任何数据而出现短时间的负载过高。可以使用预加载机制将指定表的所有索引都加载到内存中。</p>
+<h2 id="三、null值对统计信息的影响"><a href="#三、null值对统计信息的影响" class="headerlink" title="三、null值对统计信息的影响"></a>三、null值对统计信息的影响</h2><p>myisam索引中会记录值为null的列信息，只不过null值的索引键占用的空间 非常少。所以，null会影响到mysql查询优化器对执行计划的选择。于是，mysql提供了MYISAM_STATS_METHOD参数让我们自行决 定对索引中的null值的处理方式。如果MYISAM_STATS_METHOD&#x3D;nulls_unequal，那么myisam在搜集统计信息的时候会认为每个null都是不同的，则给予该字段的索引就会更大，也就是说，myisam会认为distinct的值会更多。MYISAM_STATS_METHOD&#x3D;nulls_equal则相反。</p>
+<h2 id="四、并发优化"><a href="#四、并发优化" class="headerlink" title="四、并发优化"></a>四、并发优化</h2><ul>
+<li>打开concurrent_insert，如果concurrent_insert为1，则当表中没有删除记录留下的空余空间时候可以在尾部进行并行插入。concurrent_insert为2的时候，不管有没有因为删除而留下的空间，都会在尾部进行并行插入。</li>
+<li>控制写入操作的大小以防止过长的时间拥塞。</li>
+<li>通过牺牲读取性能来提高写入性能。将写入的优先级提高。</li>
+</ul>
+<h2 id="五、其他优化"><a href="#五、其他优化" class="headerlink" title="五、其他优化"></a>五、其他优化</h2><p>通过optimize命令整理myisam表的文件，是文件占用的空间连续。一般来说，每次做了较大的数据删除操作之后，都要做此命令。</p>
+<h1 id="Innodb："><a href="#Innodb：" class="headerlink" title="Innodb："></a>Innodb：</h1><p>innodb和myisam最大区别有四点：</p>
+<ul>
+<li>缓存机制</li>
+<li>事务支持</li>
+<li>锁定实现</li>
+<li>数据存储方式</li>
+</ul>
+<p>整体性能上的差异innodb和myisam会因为不同场景而表现出很大差异，正是因为这四点。</p>
+<h2 id="第一、innodb缓存优化"><a href="#第一、innodb缓存优化" class="headerlink" title="第一、innodb缓存优化"></a>第一、innodb缓存优化</h2><p>innodb和myisam的最大区别就是innodb不仅仅缓存了索引，同时还缓存实际的数据。所以，完全相同的数据库，innodb可以使用更多的内存来缓存数据库相关信息。前提是有足够的内存。 innodb_buffer_pool_size设置了InnoDB存储引擎需求最大 的一块内存区域的大小，直接关系到InnoDB存储引擎的性能，所以如果我们有足够的内存，尽可将该参数设置到足够大，将尽可能多的InnoDB的索引及 数据都放入到该缓存区域中，直至全部。 我 们可以通过(Innodb_buffer_pool_read_requests – Innodb_buffer_pool_reads) &#x2F; Innodb_buffer_pool_read_requests * 100%计算缓存命中率，并根据命中率来调整innodb_buffer_pool_size参数大小进行优化。 innodb_log_buffer_size (global)　　这是InnoDB存储引擎的事务日志所使用的缓冲区。在mysql写入负载很高的情况下，可以增大这个参数来提高IO性能。</p>
+<h2 id="第二、事务优化"><a href="#第二、事务优化" class="headerlink" title="第二、事务优化"></a>第二、事务优化</h2><p>innodb支持的事务隔离级别如下：</p>
+<ul>
+<li>read uncommited：常被称为脏读</li>
+<li>read commited：在这一隔离级别下，不会出现dirty read。但是可能会出现non-repeatable read或者phantom read。</li>
+<li>repeatable read：innodb的默认事务隔离级别。不会出现dirty read。也不会出现non-repeatable read，但是可能会出现phantom read。</li>
+<li>serializable：serializable是标准事务隔离级别中的最高级。在事务中的任何时候看到的数据都是事务启动时候的状态。不论这期间是不是有其他事务已经修改了某些数据并提交。所以，在serializable下，phantom reads也不会出现。</li>
+</ul>
+<p>innodb在修改数据的时候，只是修改buffer pool中的数据。并不是在一个事物提交之后就将buffepool中的数据同步到磁盘上。这里要理解连续读写和随机读写。写入磁盘的 过程是需要磁头寻址的。连续读写是指将要写入的东西写入到一个连续地址空间。innodb不是每一次都将数据同步到磁盘，就是为了攒多数据之后，进行连续 读写来减少磁盘IO。 系统崩溃之后，innodb是如何利用事务日志进行数据恢复的呢？ 假设在某一时间，mysql crash了，那么，所有的bufferpool的数据都会丢失。包括已经修改了但是没来得及刷新到磁盘上的数据。在mysql从crash之后再次启 动，innodb会通过比较事务日志中的所有记录的checkpoint的信息和各个数据文件中的checkpoint信息，找到最后一次 checkpoint所对应的log sequence number。然后通过事务日志中的变更记录，将从崩溃之前最后一次checkpoint往后的所有变更重新应用一次。同步所有的数据文件到一致状态。当 然，对于logbuffer中未来得及同步到日志文件的变更数据，就再也无法找回了。总的来说，事务日志文件设置的越大，系认io性能越好，但是遇到 crash，那么恢复的时间也越长。 innodb_flush_log_at_trx_commit默认设置为1，表示每 次失误的结束都会触发log thread将logbuffer中的数据写入文件，并通知文件系统同步文件。这个设置是安全的，能够保证不论是mysql crash，还是os崩溃，还是主机断电，都不会丢失任何已经提交的数据。</p>
+<h2 id="三、数据存储优化"><a href="#三、数据存储优化" class="headerlink" title="三、数据存储优化"></a>三、数据存储优化</h2><p>innodb的聚簇主键已经了解了。但是聚簇主键也是有不好的地方的，不然其他数据库厂商也大力推广了。聚簇的最大问题就是索引键被更新造成的成本，并不只是索引数据可能会移动，而是相关的所有记录数据都要移动。所以，为了性能考虑，尽量不要更新innodb的主键值。 innodb中的数据，不论是表 还是索引，或者是存储引擎的各种数据结构，都以page作为最小物理单位来存储。每个page大小默认16K。extent由多个连续的page组成的一 个物理存储单位。一般来说每个extent64个page。每个segment有一个或者多个extent组成。每个segment都存放同一种数据。一 般来说，每个表都会存放在一个单独的segment中。 page&gt;extent&gt;segment&gt;tablespace，后面的每一个都是由前面的一个或者多个组成。tablespace是innodb的最大结构单位。 在主键上的优化建议，</p>
+<ul>
+<li>为了减小secondary index的大小，主键字段所占用的存储空间越小越好。最好是integer。当然这并不绝对。</li>
+<li>尽可能不要做主键的更新。</li>
+<li>尽可能根据主键进行查询操作。</li>
+</ul>
+<h2 id="四、其他优化"><a href="#四、其他优化" class="headerlink" title="四、其他优化"></a>四、其他优化</h2><p>autocommit相信都了解，根据自己的实际情况设置autocommit。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/mysql%E4%BC%98%E5%8C%96/" rel="tag"># mysql优化</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/centos-nginx-codeigniter-pathinfo.html" rel="prev" title="centos nginx 配置 codeigniter pathinfo(伪静态)">
+                  <i class="fa fa-angle-left"></i> centos nginx 配置 codeigniter pathinfo(伪静态)
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/php-live.html" rel="next" title="PHP程序员的技术成长规划">
+                  PHP程序员的技术成长规划 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">votan</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

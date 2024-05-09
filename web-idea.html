@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"vsnote.me","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="网页布局的未来展望随着 HTML5 的崭露头角和移动 APP 的横行，我相信，WEB3.0 的普及很快就会到来！这将标志着网页布局不再需要纠结于使用表格还是 DIV+CSS 了。 使用 DIV+CSS 时，一些较复杂的图文排版在IE浏览器里可能会错位，这常常迫使设计者不得不选择表格来实现布局。但当 WEB3.0 到来时，对于我的个人网站设计来说，这将是从天堂到地狱的转变！ 我们将不再需要设置各种">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小白对网页布局的一些看法">
+<meta property="og:url" content="https://vsnote.me/web-idea.html">
+<meta property="og:site_name" content="码农笔记">
+<meta property="og:description" content="网页布局的未来展望随着 HTML5 的崭露头角和移动 APP 的横行，我相信，WEB3.0 的普及很快就会到来！这将标志着网页布局不再需要纠结于使用表格还是 DIV+CSS 了。 使用 DIV+CSS 时，一些较复杂的图文排版在IE浏览器里可能会错位，这常常迫使设计者不得不选择表格来实现布局。但当 WEB3.0 到来时，对于我的个人网站设计来说，这将是从天堂到地狱的转变！ 我们将不再需要设置各种">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2012-12-08T00:04:21.000Z">
+<meta property="article:modified_time" content="2024-05-09T08:23:45.858Z">
+<meta property="article:author" content="votan">
+<meta property="article:tag" content="CSS">
+<meta property="article:tag" content="HTML">
+<meta property="article:tag" content="web">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://vsnote.me/web-idea.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://vsnote.me/web-idea.html","path":"web-idea.html","title":"小白对网页布局的一些看法"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>小白对网页布局的一些看法 | 码农笔记</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">码农笔记</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">热爱，分享。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E9%A1%B5%E5%B8%83%E5%B1%80%E7%9A%84%E6%9C%AA%E6%9D%A5%E5%B1%95%E6%9C%9B"><span class="nav-number">1.</span> <span class="nav-text">网页布局的未来展望</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E7%9A%84%E5%B8%83%E5%B1%80%E5%81%8F%E5%A5%BD"><span class="nav-number">2.</span> <span class="nav-text">我的布局偏好</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A8%E8%AE%BA%E4%B8%A4%E6%A0%8F%E5%B8%83%E5%B1%80%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">讨论两栏布局的实现方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="nav-number">3.1.</span> <span class="nav-text">代码示例</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">votan</p>
+  <div class="site-description" itemprop="description">用心记录，分享技术。</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">122</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">164</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://vsnote.me/web-idea.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="votan">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="码农笔记">
+      <meta itemprop="description" content="用心记录，分享技术。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="小白对网页布局的一些看法 | 码农笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          <a href="/web-idea" class="post-title-link post-title-link-external" itemprop="url">小白对网页布局的一些看法<i class="fa fa-external-link-alt"></i></a>
+          
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2012-12-08 08:04:21" itemprop="dateCreated datePublished" datetime="2012-12-08T08:04:21+08:00">2012-12-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-05-09 16:23:45" itemprop="dateModified" datetime="2024-05-09T16:23:45+08:00">2024-05-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%88%86%E4%BA%AB/" itemprop="url" rel="index"><span itemprop="name">分享</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="网页布局的未来展望"><a href="#网页布局的未来展望" class="headerlink" title="网页布局的未来展望"></a>网页布局的未来展望</h2><p>随着 <strong>HTML5</strong> 的崭露头角和移动 APP 的横行，我相信，WEB3.0 的普及很快就会到来！这将标志着网页布局不再需要纠结于使用表格还是 DIV+CSS 了。</p>
+<p>使用 DIV+CSS 时，一些较复杂的图文排版在IE浏览器里可能会错位，这常常迫使设计者不得不选择表格来实现布局。但当 WEB3.0 到来时，对于我的个人网站设计来说，这将是从天堂到地狱的转变！</p>
+<p>我们将不再需要设置各种 hack，也不必担心网站出现错位问题。网站制作出来的效果将会是精确的，这种改变带来的满足感，如同四季更替带来的美好。</p>
+<h2 id="我的布局偏好"><a href="#我的布局偏好" class="headerlink" title="我的布局偏好"></a>我的布局偏好</h2><p>我记得最初学习网站制作时，我采用的是 DIV+CSS。虽然表格布局方便，但 DIV 的灵活性让我更为喜爱。因此，我在布局时，只要可能，就尽量使用 DIV。</p>
+<p>我喜欢 DIV 的原因之一是它带来的自由感，同时也方便区分网站的各个部分。使用表格布局的人如果不习惯写注释，那么他们的代码可能会让人摸不着头脑。而我在命名 DIV 的类时，通常会使用容易理解的英文或拼音，即便不写注释，其他人也能大致理解我的代码。</p>
+<h2 id="讨论两栏布局的实现方法"><a href="#讨论两栏布局的实现方法" class="headerlink" title="讨论两栏布局的实现方法"></a>讨论两栏布局的实现方法</h2><p>前不久我阅读了一篇文章，讨论如何实现两栏布局。当然，兼容性是必须考虑的。</p>
+<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><p>html代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;content&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;aside&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;main&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>css代码：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Qzone版 */</span></span><br><span class="line"><span class="selector-class">.aside</span>&#123;<span class="attribute">float</span>: left;<span class="attribute">width</span>: <span class="number">170px</span>;&#125;</span><br><span class="line"><span class="selector-class">.main</span>&#123;<span class="attribute">float</span>: left;<span class="attribute">width</span>: <span class="number">790px</span>;&#125;</span><br><span class="line"><span class="comment">/* 朋友网版 */</span></span><br><span class="line"><span class="selector-class">.aside</span>&#123;<span class="attribute">float</span>: left;<span class="attribute">width</span>: <span class="number">170px</span>;&#125;</span><br><span class="line"><span class="selector-class">.main</span>&#123;<span class="attribute">overflow</span>: hidden;<span class="selector-id">#zoom</span>:<span class="number">1</span>;&#125;</span><br><span class="line"><span class="comment">/* Fackbook版 */</span></span><br><span class="line"><span class="selector-class">.aside</span>&#123;<span class="attribute">float</span>: left;<span class="attribute">width</span>: <span class="number">170px</span>;&#125;</span><br><span class="line"><span class="selector-class">.main</span>&#123;<span class="attribute">margin-left</span>: <span class="number">170px</span>;zoom:<span class="number">1</span>;&#125;</span><br><span class="line"><span class="comment">/* Yahoo版 */</span></span><br><span class="line"><span class="selector-class">.content</span>&#123;<span class="attribute">position</span>: relative;zoom:<span class="number">1</span>;&#125;</span><br><span class="line"><span class="selector-class">.aside</span>&#123;<span class="attribute">position</span>: absolute;<span class="attribute">left</span>: <span class="number">0</span>;<span class="attribute">top</span>: <span class="number">0</span>;<span class="attribute">width</span>: <span class="number">170px</span>;&#125;</span><br><span class="line"><span class="selector-class">.main</span>&#123;<span class="attribute">margin-left</span>: <span class="number">170px</span>;zoom:<span class="number">1</span>;&#125;</span><br><span class="line"><span class="comment">/* Google版 */</span></span><br><span class="line"><span class="selector-class">.aside</span>&#123;<span class="attribute">display</span>: inline-block;<span class="attribute">width</span>: <span class="number">170px</span>;&#125;</span><br><span class="line"><span class="selector-class">.main</span>&#123;<span class="attribute">display</span>: inline-block;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>很明显在保持同样 HTML 结构的情况下，实现两栏布局可以有多种 CSS 方案实现（左栏定宽），主要方向是用浮动或不用浮动，右栏定宽或者不定宽： Qzone、朋友网、Facebook 都给左栏浮动，唯一不同的是右栏的写法，Qzone 给右栏定宽并且浮动，而朋友网和 Facebook 则并没有给右栏定宽也未浮动，而是利用了创建 BFC 并且为低版本 IE 触发 hasLayout 的原理让右栏自适应宽度。Yahoo 和 Google 两栏都未用浮动，唯一不同的是 Yahoo 用了绝对定位的方法，而谷歌用了 inline-block，Google 已经宣布旗下一些产品放弃对 IE8 的支持，所以 Google 可以大胆的使用 inline-block 去实现布局，不用去为其他低版本浏览器写一大堆的hack。 当然，没有更好的办法，只有适合自己的办法，尽管每个人的喜好不同，但是目的都是一样的。现在网站建设的方案是越来越多，鱼目混珠，分不清楚真假。</p>
+<p>但是我相信我看到的就是真的！个人网站设计也比较多，毕竟一个人一个性格，一个人一个想法。只能尽量的满足不同人的需求，才能在这个苦逼的行业呆下去！</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CSS/" rel="tag"># CSS</a>
+              <a href="/tags/HTML/" rel="tag"># HTML</a>
+              <a href="/tags/web/" rel="tag"># web</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/thinkcss.html" rel="prev" title="Thinkcss-前端必备神器！从此告别多浏览器兼容调试！">
+                  <i class="fa fa-angle-left"></i> Thinkcss-前端必备神器！从此告别多浏览器兼容调试！
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/web-pic-format.html" rel="next" title="WEB应用开发该选择什么图片格式？">
+                  WEB应用开发该选择什么图片格式？ <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">votan</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

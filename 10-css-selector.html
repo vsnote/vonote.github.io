@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"vsnote.me","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="每当我们使用 CSS 的时候，我们都会使用选择器。但是尽管如此，CSS选择器 是最容易被我们忽视的一部分。人们总是在谈论CSS的巨大变革而忽略了其本质。会使用选择器会使我们日常编程的工作变得简单且讲究。今天我就将介绍10个选择器是我们容易忽略，但确实非常重要且行之有效的。  ** 这个选择器应该是你最容易记住的，但是你不一定会记得使用它。它是用来为页面上所有元素进行样式设置，尤其是当你想要设置页面">
+<meta property="og:type" content="article">
+<meta property="og:title" content="10个你不可不用的CSS选择器">
+<meta property="og:url" content="https://vsnote.me/10-css-selector.html">
+<meta property="og:site_name" content="码农笔记">
+<meta property="og:description" content="每当我们使用 CSS 的时候，我们都会使用选择器。但是尽管如此，CSS选择器 是最容易被我们忽视的一部分。人们总是在谈论CSS的巨大变革而忽略了其本质。会使用选择器会使我们日常编程的工作变得简单且讲究。今天我就将介绍10个选择器是我们容易忽略，但确实非常重要且行之有效的。  ** 这个选择器应该是你最容易记住的，但是你不一定会记得使用它。它是用来为页面上所有元素进行样式设置，尤其是当你想要设置页面">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2013-08-14T05:26:58.000Z">
+<meta property="article:modified_time" content="2024-05-09T08:23:45.858Z">
+<meta property="article:author" content="votan">
+<meta property="article:tag" content="CSS">
+<meta property="article:tag" content="前端开发">
+<meta property="article:tag" content="技巧">
+<meta property="article:tag" content="教程">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://vsnote.me/10-css-selector.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://vsnote.me/10-css-selector.html","path":"10-css-selector.html","title":"10个你不可不用的CSS选择器"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>10个你不可不用的CSS选择器 | 码农笔记</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">码农笔记</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">热爱，分享。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">*</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-B"><span class="nav-number">2.</span> <span class="nav-text">A+B</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-B-1"><span class="nav-number">3.</span> <span class="nav-text">A&gt;B</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-href-%E2%80%9Dexample%E2%80%9D"><span class="nav-number">4.</span> <span class="nav-text">A[href*&#x3D;”example”]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-not-B"><span class="nav-number">5.</span> <span class="nav-text">A:not(B)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-first-child-A-last-child"><span class="nav-number">6.</span> <span class="nav-text">A:first-child &#x2F; A:last-child</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-nth-child-n"><span class="nav-number">7.</span> <span class="nav-text">A:nth-child(n)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-nth-of-type-n"><span class="nav-number">8.</span> <span class="nav-text">A:nth-of-type(n)</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">votan</p>
+  <div class="site-description" itemprop="description">用心记录，分享技术。</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">122</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">164</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://vsnote.me/10-css-selector.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="votan">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="码农笔记">
+      <meta itemprop="description" content="用心记录，分享技术。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="10个你不可不用的CSS选择器 | 码农笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          <a href="/10-css-selector" class="post-title-link post-title-link-external" itemprop="url">10个你不可不用的CSS选择器<i class="fa fa-external-link-alt"></i></a>
+          
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2013-08-14 13:26:58" itemprop="dateCreated datePublished" datetime="2013-08-14T13:26:58+08:00">2013-08-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-05-09 16:23:45" itemprop="dateModified" datetime="2024-05-09T16:23:45+08:00">2024-05-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%88%86%E4%BA%AB/" itemprop="url" rel="index"><span itemprop="name">分享</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>每当我们使用 <strong>CSS</strong> 的时候，我们都会使用选择器。但是尽管如此，<strong>CSS选择器</strong> 是最容易被我们忽视的一部分。人们总是在谈论CSS的巨大变革而忽略了其本质。会使用选择器会使我们日常编程的工作变得简单且讲究。今天我就将介绍10个选择器是我们容易忽略，但确实非常重要且行之有效的。 </p>
+<h2 id=""><a href="#" class="headerlink" title="*"></a>*</h2><p><code>*</code> 这个选择器应该是你最容易记住的，但是你不一定会记得使用它。它是用来为页面上所有元素进行样式设置，尤其是当你想要设置页面默认样式，或者是创建重置样式的时候，* 就是一个非常方便的选择器。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">   <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">   <span class="attribute">font-family</span>: helvetica, arial, sans-serif;</span><br><span class="line">   <span class="attribute">font-size</span>: <span class="number">16px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="A-B"><a href="#A-B" class="headerlink" title="A+B"></a>A+B</h2><p>A+B 选择器称为邻近选择器，它的作用是选择紧邻着前一个元素的元素。例如它的写法是 A+B，那么你所选择的是紧邻在A元素后面的第一个B元素。如果你想要选择 header 元素后面的第一个div元素，你可以按照下面这种写法：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">header</span> + <span class="selector-tag">div</span> &#123;</span><br><span class="line">   <span class="attribute">margin-top</span>: <span class="number">50px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="A-B-1"><a href="#A-B-1" class="headerlink" title="A&gt;B"></a>A&gt;B</h2><p>这个选择器只用于选择直接子元素，相信你知道A B这样的写法，是用来选择A元素下面任意层的B元素，而A&gt;B只会选择A元素下面的直接子元素。当你想要操作父元素的第一层子元素时，就需要用到这个选择器。例如你有一个列表元素，ul嵌套li如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>List Item With ul</span><br><span class="line">        <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span>&gt;</span>Sub list item<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span>&gt;</span>Sub list item<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span>&gt;</span>Sub list item<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>List Item<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>List Item<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>你只想要给ul的直接子元素li元素设定样式，你就可以用这个A&gt;B选择器。如果用A B选择器的话，所有嵌套的li元素都会被应用样式。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ul</span> &gt; <span class="selector-tag">li</span> &#123;</span><br><span class="line">   <span class="attribute">background</span>: black;</span><br><span class="line">   <span class="attribute">color</span>: white;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="A-href-”example”"><a href="#A-href-”example”" class="headerlink" title="A[href*&#x3D;”example”]"></a>A[href*&#x3D;”example”]</h2><p>如果你想要将一个超链接设定一个特定样式的话，那就非这个选择器莫属，用于为任何与引号内的内容匹配的超链接设定样式。假如你想要将所有链接到facebook的超链接加一个蓝色的样式，你就可以写成：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-attr">[href*=<span class="string">&quot;facebook&quot;</span>]</span> &#123;</span><br><span class="line">   <span class="attribute">color</span>: blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当然，还可以不带*，这样就是给完全匹配引号内地址的超链接进行样式设定。</p>
+<h2 id="A-not-B"><a href="#A-not-B" class="headerlink" title="A:not(B)"></a>A:not(B)</h2><p>这个选择器在特定时候还是挺重要的，它的用意是，选择除了在B元素内的所有A元素。比如你想要选择除了在footer内的所有div元素，那么你就可以写成：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span><span class="selector-pseudo">:not</span>(<span class="selector-class">.footer</span>) &#123;</span><br><span class="line">   <span class="attribute">margin-bottom</span>: <span class="number">40px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="A-first-child-A-last-child"><a href="#A-first-child-A-last-child" class="headerlink" title="A:first-child &#x2F; A:last-child"></a>A:first-child &#x2F; A:last-child</h2><p>顾名思义，<em>first-child</em> 和 <em>last-child</em> 是用来选择父元素中的第一个子元素和最后一个子元素的选择器。我们有时候会在一个列表中，希望第一个列表元素和最后一个列表元素有不同于其他元素的表现形式，我们就可以用这个选择器。 比如，移除第一个列表元素的边框，给最后一个列表元素移除右边距：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ul</span> <span class="selector-tag">li</span><span class="selector-pseudo">:first</span>-child &#123;  </span><br><span class="line">   <span class="attribute">border</span>: none;  </span><br><span class="line">&#125;     </span><br><span class="line"><span class="selector-tag">ul</span> <span class="selector-tag">li</span><span class="selector-pseudo">:last-child</span> &#123;  </span><br><span class="line">   <span class="attribute">margin-right</span>: <span class="number">0px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="A-nth-child-n"><a href="#A-nth-child-n" class="headerlink" title="A:nth-child(n)"></a>A:nth-child(n)</h2><p><em>nth-child</em> 是用来按照顺序来选择A元素内的子元素。比如你想要选择第三个列表元素，你可以写成：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ul</span> <span class="selector-tag">li</span><span class="selector-pseudo">:nth-child</span>(<span class="number">3</span>) &#123;</span><br><span class="line">   <span class="attribute">background</span>: <span class="number">#ccc</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们可以使用n来成倍选择子元素，比如我们在括号内写3n的话，那么该选择器会选择第3个，第6个，第9个，12个，按照3n的规律成倍选择子元素。 <strong>A:nth-last-child(n)</strong> <em>nth-last-child</em> 与 <em>nth-child</em> 差不多，不过它不是从前遍历，而是从最后一个元素向前遍历。所以如果你在括号里写3的话，这个选择器是选择了父元素里面的倒数第3个子元素：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ul</span> <span class="selector-tag">li</span><span class="selector-pseudo">:nth-last-child</span>(<span class="number">3</span>) &#123;</span><br><span class="line">   <span class="attribute">background</span>: <span class="number">#ccc</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="A-nth-of-type-n"><a href="#A-nth-of-type-n" class="headerlink" title="A:nth-of-type(n)"></a>A:nth-of-type(n)</h2><p><strong>从写法来看的话</strong>，不太容易看出来这个选择器是做什么的。但是让我们看一下下面这个例子，你可以理解了。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> <span class="selector-tag">p</span><span class="selector-pseudo">:nth-of-type</span>(<span class="number">3</span>) &#123;</span><br><span class="line">   <span class="attribute">font-style</span>: italic;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上这段代码的意思是，寻找在div元素中的第三个p元素。所以这个选择器是用来选取你的页面内，与你写的类型匹配的元素。 <strong>A:visited</strong> 你应该注意过，当你在 google 上点过的链接，都会变成别的颜色。这个就是 visited 选择器做的。这个选择器很好用，但是很容易被遗忘，但是每当我用 google 的时候，就觉得这个选择器是非常有用的！</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:visited</span> &#123;</span><br><span class="line">   <span class="attribute">color</span>: blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>用这些选择器，会节省很多编程时间，而且可以避免使用太多的ID。当然这些只是CSS选择器的入门，实际上仍有很多选择器，很好用但是经常被我们所忽略。</p>
+<blockquote>
+<p>文章来源：<a target="_blank" rel="noopener" href="http://www.webdesignerdepot.com/2013/08/10-css-selectors-you-shouldnt-code-without/">http://www.webdesignerdepot.com/2013/08/10-css-selectors-you-shouldnt-code-without/</a></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CSS/" rel="tag"># CSS</a>
+              <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" rel="tag"># 前端开发</a>
+              <a href="/tags/%E6%8A%80%E5%B7%A7/" rel="tag"># 技巧</a>
+              <a href="/tags/%E6%95%99%E7%A8%8B/" rel="tag"># 教程</a>
+              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"># 笔记</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/sublime-text-3052-for-win-x86-x64.html" rel="prev" title="Sublime Text 3052 for win x86/x64 最新中文破解版">
+                  <i class="fa fa-angle-left"></i> Sublime Text 3052 for win x86/x64 最新中文破解版
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/beyond-compare-3.html" rel="next" title="Beyond Compare 3 最出色的文件比较软件">
+                  Beyond Compare 3 最出色的文件比较软件 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">votan</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"vsnote.me","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="通过FTP来连接管理网站服务器的一种最方便不过的方式了，不过面对网络中那众多的FTP软件，有时候选择什么FTP软件就会变得很蛋疼。 网络上面最著名的FTP连接工具应该是非 FlashFXP莫属了，而我之前也是一直用的FlashfXP免注册版本。功能很强大，但是一当我往服务器里面上传一大堆文件的时候，就让我捉急不已。有时候传到一个很大的文件的时候，那其他的小文件就是在等候状态——这是一个很让我纠结的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FileZilla 一款支持多文件上传多标签管理的高效FTP工具">
+<meta property="og:url" content="https://vsnote.me/filezilla.html">
+<meta property="og:site_name" content="码农笔记">
+<meta property="og:description" content="通过FTP来连接管理网站服务器的一种最方便不过的方式了，不过面对网络中那众多的FTP软件，有时候选择什么FTP软件就会变得很蛋疼。 网络上面最著名的FTP连接工具应该是非 FlashFXP莫属了，而我之前也是一直用的FlashfXP免注册版本。功能很强大，但是一当我往服务器里面上传一大堆文件的时候，就让我捉急不已。有时候传到一个很大的文件的时候，那其他的小文件就是在等候状态——这是一个很让我纠结的">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://vsnote.me/images/uploads/2013/07/filezilla2.png">
+<meta property="article:published_time" content="2013-07-19T00:41:16.000Z">
+<meta property="article:modified_time" content="2024-05-09T08:23:45.858Z">
+<meta property="article:author" content="votan">
+<meta property="article:tag" content="软件">
+<meta property="article:tag" content="工具">
+<meta property="article:tag" content="效率">
+<meta property="article:tag" content="文件管理">
+<meta property="article:tag" content="网络软件">
+<meta property="article:tag" content="绿色">
+<meta property="article:tag" content="免费">
+<meta property="article:tag" content="FTP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://vsnote.me/images/uploads/2013/07/filezilla2.png">
+
+
+<link rel="canonical" href="https://vsnote.me/filezilla.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://vsnote.me/filezilla.html","path":"filezilla.html","title":"FileZilla 一款支持多文件上传多标签管理的高效FTP工具"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>FileZilla 一款支持多文件上传多标签管理的高效FTP工具 | 码农笔记</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">码农笔记</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">热爱，分享。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E7%95%8C%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">软件界面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%E7%89%B9%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">功能特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80"><span class="nav-number">3.</span> <span class="nav-text">下载地址</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">votan</p>
+  <div class="site-description" itemprop="description">用心记录，分享技术。</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">122</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">164</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://vsnote.me/filezilla.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="votan">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="码农笔记">
+      <meta itemprop="description" content="用心记录，分享技术。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="FileZilla 一款支持多文件上传多标签管理的高效FTP工具 | 码农笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          <a href="/filezilla" class="post-title-link post-title-link-external" itemprop="url">FileZilla 一款支持多文件上传多标签管理的高效FTP工具<i class="fa fa-external-link-alt"></i></a>
+          
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2013-07-19 08:41:16" itemprop="dateCreated datePublished" datetime="2013-07-19T08:41:16+08:00">2013-07-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-05-09 16:23:45" itemprop="dateModified" datetime="2024-05-09T16:23:45+08:00">2024-05-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BD%AF%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">软件</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>通过<strong>FTP</strong>来连接管理网站服务器的一种最方便不过的方式了，不过面对网络中那众多的FTP软件，有时候选择什么FTP软件就会变得很蛋疼。 网络上面最著名的FTP连接工具应该是非 FlashFXP莫属了，而我之前也是一直用的FlashfXP免注册版本。功能很强大，但是一当我往服务器里面上传一大堆文件的时候，就让我捉急不已。有时候传到一个很大的文件的时候，那其他的小文件就是在等候状态——这是一个很让我纠结的地方。 于是我把目光放到了其他软件——<strong>FileZilla</strong>。 <strong>FileZilla</strong>是一个免费开源的FTP客户端软件，分为客户端版本和服务器版本，具备所有的FTP软件功能。FlashFXP有的功能它都能满足你，多文件上传，多标签窗口，使它成为一个方便高效的FTP客户端工具，跨平台和便携式免安装使它更适合开发人员使用。而FileZilla Server则是一个小巧并且可靠的支持FTP&amp;SFTP的FTP服务器软件。</p>
+<h4 id="软件界面"><a href="#软件界面" class="headerlink" title="软件界面"></a>软件界面</h4><p><img src="/../images/uploads/2013/07/filezilla2.png" alt="filezilla2"></p>
+<h4 id="功能特点"><a href="#功能特点" class="headerlink" title="功能特点"></a>功能特点</h4><ul>
+<li>断点续传进行上传、下载(需要服务器支持)</li>
+<li>站点管理</li>
+<li>多文件上传</li>
+<li>多标签管理连接</li>
+<li>防发呆功能(有的FTP服务器会将发呆过久的用户赶出，这样发呆的用户就得重复登录)</li>
+<li>可进行SSL加密连接</li>
+<li>支持SFTP(Secure FTP)</li>
+<li>支持拖放</li>
+<li>多语言支持(Linux平台需额外安装“filezilla-locales”套件)</li>
+</ul>
+<h4 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h4><p><a target="_blank" rel="noopener" href="http://jaist.dl.sourceforge.net/project/filezilla/FileZilla_Client/3.7.1.1/FileZilla_3.7.1.1_win32.zip">官方下载</a> <a target="_blank" rel="noopener" href="http://pan.baidu.com/share/link?shareid=3069760042&uk=1796312283">网盘下载</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag"># 软件</a>
+              <a href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag"># 工具</a>
+              <a href="/tags/%E6%95%88%E7%8E%87/" rel="tag"># 效率</a>
+              <a href="/tags/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/" rel="tag"># 文件管理</a>
+              <a href="/tags/%E7%BD%91%E7%BB%9C%E8%BD%AF%E4%BB%B6/" rel="tag"># 网络软件</a>
+              <a href="/tags/%E7%BB%BF%E8%89%B2/" rel="tag"># 绿色</a>
+              <a href="/tags/%E5%85%8D%E8%B4%B9/" rel="tag"># 免费</a>
+              <a href="/tags/FTP/" rel="tag"># FTP</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/yourphp-v3.html" rel="prev" title="Yourphp v3.0 正式版安装和Ypampz集成环境体验">
+                  <i class="fa fa-angle-left"></i> Yourphp v3.0 正式版安装和Ypampz集成环境体验
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/fg740p.html" rel="next" title="自由门 7.40专业版 - 怎么看Youtube？怎么上facebook？它告诉你！">
+                  自由门 7.40专业版 - 怎么看Youtube？怎么上facebook？它告诉你！ <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">votan</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

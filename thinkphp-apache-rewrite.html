@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"vsnote.me","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="ThinkPHP 作为国内最流行的一个PHP框架，由于她开发应用的便捷，便吸引越来越多的开发者开始使用她来做项目的底层架构。像我PHP基础并不是很好，也可以使用她来完成一个像模像样的项目。 下面便分享一些使用ThinkPHP需要了解的东西。 去掉 URL 中的 index.phpThinkPHP是单一入口的，默认的 URL 不是很友好。但 ThinkPHP 提供了各种机制来定制需要的 URL 格式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在Apache服务器中配置ThinkPHP伪静态URL">
+<meta property="og:url" content="https://vsnote.me/thinkphp-apache-rewrite.html">
+<meta property="og:site_name" content="码农笔记">
+<meta property="og:description" content="ThinkPHP 作为国内最流行的一个PHP框架，由于她开发应用的便捷，便吸引越来越多的开发者开始使用她来做项目的底层架构。像我PHP基础并不是很好，也可以使用她来完成一个像模像样的项目。 下面便分享一些使用ThinkPHP需要了解的东西。 去掉 URL 中的 index.phpThinkPHP是单一入口的，默认的 URL 不是很友好。但 ThinkPHP 提供了各种机制来定制需要的 URL 格式">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2013-08-02T12:50:31.000Z">
+<meta property="article:modified_time" content="2024-05-09T08:23:45.858Z">
+<meta property="article:author" content="votan">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="代码">
+<meta property="article:tag" content="二次开发">
+<meta property="article:tag" content="php">
+<meta property="article:tag" content="PHP框架">
+<meta property="article:tag" content="thinkphp">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://vsnote.me/thinkphp-apache-rewrite.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://vsnote.me/thinkphp-apache-rewrite.html","path":"thinkphp-apache-rewrite.html","title":"在Apache服务器中配置ThinkPHP伪静态URL"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>在Apache服务器中配置ThinkPHP伪静态URL | 码农笔记</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">码农笔记</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">热爱，分享。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%BB%E6%8E%89-URL-%E4%B8%AD%E7%9A%84-index-php"><span class="nav-number">1.</span> <span class="nav-text">去掉 URL 中的 index.php</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">votan</p>
+  <div class="site-description" itemprop="description">用心记录，分享技术。</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">122</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">164</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://vsnote.me/thinkphp-apache-rewrite.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="votan">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="码农笔记">
+      <meta itemprop="description" content="用心记录，分享技术。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="在Apache服务器中配置ThinkPHP伪静态URL | 码农笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          <a href="/thinkphp-apache-rewrite" class="post-title-link post-title-link-external" itemprop="url">在Apache服务器中配置ThinkPHP伪静态URL<i class="fa fa-external-link-alt"></i></a>
+          
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2013-08-02 20:50:31" itemprop="dateCreated datePublished" datetime="2013-08-02T20:50:31+08:00">2013-08-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-05-09 16:23:45" itemprop="dateModified" datetime="2024-05-09T16:23:45+08:00">2024-05-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>ThinkPHP 作为国内最流行的一个PHP框架，由于她开发应用的便捷，便吸引越来越多的开发者开始使用她来做项目的底层架构。像我PHP基础并不是很好，也可以使用她来完成一个像模像样的项目。 下面便分享一些使用ThinkPHP需要了解的东西。</p>
+<h4 id="去掉-URL-中的-index-php"><a href="#去掉-URL-中的-index-php" class="headerlink" title="去掉 URL 中的 index.php"></a>去掉 URL 中的 index.php</h4><p>ThinkPHP是单一入口的，默认的 URL 不是很友好。<br>但 ThinkPHP 提供了各种机制来定制需要的 URL 格式，配合 Apache 里面的 <code>.htaccess</code> 文件，更是可以定制出人性化的更利于 SEO 的 URL 地址来。</p>
+<p><code>.htaccess</code>文件是 Apache 服务器中的一个配置文件，它负责相关目录下的网页配置。我们可以利用 <code>.htaccess</code> 文件的 Rewrite 规则来隐藏掉 ThinkPHP URL 中的 <code>index.php</code> 文件（即入口文件），这也是 ThinkPHP URL 伪静态的第一步。</p>
+<p>例如原来的 URL 为： <code>http://127.0.0.1/index.php/Index/insert</code> 去掉 <code>index.php</code> 之后变为： <code>http://127.0.0.1/Index/insert</code> 如此一来，就变成了 <code>http://服务器地址/应用模块名称/操作名称[/变量参数]</code> 的常见 URL 格式。</p>
+<p>更改 Apache <code>httpd.conf</code> 配置文件 提示：如果在虚拟主机商配置，请直接配置第三、四步，因为支持 <code>.htaccess</code> 的空间已经配置好了前面两步。</p>
+<p>用编辑器打开 Apache 配置文件 httpd.conf（该文件位于 Apache 安装目录Apache2conf），并按如下步骤修改。</p>
+<ol>
+<li><p>确认加载了 <code>mod_rewrite.so</code> 模块（将如下配置前的 # 号去掉）： <code>LoadModule rewrite_module modules/mod_rewrite.so</code></p>
+</li>
+<li><p>更改需要读取 <code>.htaccess</code> 文件的目录，将原来的目录注释掉： <code>#&lt;Directory &quot;C:/Program Files/Apache Group/Apache2/htdocs&quot;&gt;</code> 更改 <code>AllowOverride None</code> 为 <code>AllowOverride FileInfo Options</code> 更改后的配置如下所示： <code>#&lt;Directory &quot;C:/Program Files/Apache Group/Apache2/htdocs&quot;&gt; AllowOverride FileInfo Options</code> <code>.htaccess</code> 是基于目录来控制的， 该句即表示需要读取 <code>.htaccess</code> 文件的目录，要根据实际具体 Apache 的解析目录来配置。虚拟主机如果提供 <code>.htaccess</code> 控制，一般都已经配置好了。</p>
+</li>
+<li><p>在需要隐藏 <code>index.php</code> 的目录下（本教程中为 <code>E:/html/myapp</code>，也即入口文件所在目录）创建 <code>.htaccess</code> 文件，并写入如下规则代码： </p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">RewriteEngine</span> <span class="literal">on</span> #不显示index.php </span><br><span class="line"><span class="attribute">RewriteCond</span> <span class="variable">%&#123;REQUEST_FILENAME&#125;</span> !-d </span><br><span class="line"><span class="attribute">RewriteCond</span> <span class="variable">%&#123;REQUEST_FILENAME&#125;</span> !-f </span><br><span class="line"><span class="attribute">RewriteRule</span> ^(.*)$ index.php/$<span class="number">1</span><span class="meta"> [QSA,PT,L]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编辑项目配置文件 Conf&#x2F;config.php ，将 URL 模式配置为 2（Rewrite模式）： ‘URL_MODEL’&#x3D;&gt;2, 至此，各个配置已经完成。</p>
+</li>
+</ol>
+<p>保存各配置文件后，重启 Apache 服务器并删除 Runtime 目录下的项目缓存文件，在浏览器访问隐藏 <code>index.php</code> 后的地址测试是否成功： <code>http://127.0.0.1/html/myapp/Index/index</code> 如果访问成功，那么利用 Apache <code>.htaccess</code> 文件的 Rewrite 规则隐藏 <code>index.php</code> 入口文件的配置就成功了。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"># 笔记</a>
+              <a href="/tags/%E4%BB%A3%E7%A0%81/" rel="tag"># 代码</a>
+              <a href="/tags/%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" rel="tag"># 二次开发</a>
+              <a href="/tags/php/" rel="tag"># php</a>
+              <a href="/tags/PHP%E6%A1%86%E6%9E%B6/" rel="tag"># PHP框架</a>
+              <a href="/tags/thinkphp/" rel="tag"># thinkphp</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/thinkphp-tips-1.html" rel="prev" title="ThinkPHP使用技巧经验分享(一)">
+                  <i class="fa fa-angle-left"></i> ThinkPHP使用技巧经验分享(一)
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/css3-3d-book.html" rel="next" title="用CSS3实现图书3D变换动画效果">
+                  用CSS3实现图书3D变换动画效果 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">votan</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
